@@ -25,6 +25,7 @@ mod 'puppetlabs-reboot',           '1.2.1'
 mod 'jfryman-selinux',             '0.4.0'
 mod 'liamjbennett-win_facts',      '0.0.2'
 mod 'puppetlabs-powershell',       '2.0.3'
+mod 'puppetlabs-dsc',              '1.1.0'
 
 
 # Modules from Repo's
