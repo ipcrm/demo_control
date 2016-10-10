@@ -15,6 +15,3 @@ File { backup => false }
 #    },
 #  }
 #}
-
-# Set an easier var to find our role
-$role = $trusted['extensions']['pp_role']
