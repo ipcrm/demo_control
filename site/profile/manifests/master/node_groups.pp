@@ -14,7 +14,7 @@ class profile::master::node_groups {
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'trusted.certname'], $::clientcert]],
+    rule                 => ['and', ['=', ['fact', 'clientcert'], $::clientcert]],
     classes              => {
       'role::master' => {},
     },
@@ -25,7 +25,7 @@ class profile::master::node_groups {
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'trusted.extensions.pp_role'], 'generalserver']],
+    rule                 => ['and', ['=', ['fact', 'role'], 'generalserver']],
     classes              => {
       'role::generalserver' => {},
     },
