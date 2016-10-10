@@ -1,4 +1,4 @@
-class profile::base::node_groups {
+class profile::master::node_groups {
 
   package { 'puppetclassify':
     ensure   => present,
