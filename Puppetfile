@@ -6,7 +6,6 @@ mod "puppetlabs/stdlib",           '4.12.0'
 mod "puppetlabs/concat",           '2.2.0'
 mod "puppet/hiera",                '2.1.2'
 mod "puppetlabs/ntp",              '4.2.0'
-mod 'tse-winntp',                  '1.0.1'
 mod "puppetlabs/accounts",         '1.0.0'
 mod "ghoneycutt/dnsclient",        '3.5.1'
 mod "ghoneycutt/ssh",              '3.43.0'
@@ -31,4 +30,8 @@ mod 'puppetlabs-dsc',              '1.1.0'
 # Modules from Repo's
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git'
+
+mod 'tse-winntp',
+  :git => 'https://github.com/ipcrm/tse-module-winntp.git',
+  :ref => 'cleanup_spec_chars'
 
