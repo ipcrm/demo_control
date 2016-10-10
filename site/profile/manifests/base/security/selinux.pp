@@ -3,14 +3,15 @@ class profile::base::security::selinux (
 ){
 
   if $::facts['os']['family'] == 'RedHat' {
-    class { 'selinux':
+    class { '::selinux':
       mode   => $selinux_mode,
       notify => Reboot['selinux'],
     }
 
     reboot { 'selinux':
-      apply   => finished,
-      timeout => 15,
+      subscribe => Class['selinux::config'],
+      apply     => 'finished',
+      timeout   => 0,
     }
 
   }
