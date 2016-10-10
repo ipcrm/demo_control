@@ -28,11 +28,12 @@ class profile::master::puppetserver {
     }
 
     file{'/etc/puppetlabs/puppet/autosign.conf':
-      ensure => present,
-      mode   => '0644',
-      owner  => 'pe-puppet',
-      group  => 'pe-puppet',
-      notify => Service['pe-puppetserver'],
+      ensure  => present,
+      mode    => '0644',
+      owner   => 'pe-puppet',
+      group   => 'pe-puppet',
+      content => '*',
+      notify  => Service['pe-puppetserver'],
     }
 
     file_line{'require_tty_sudo':
