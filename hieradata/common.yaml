@@ -1,0 +1,35 @@
+---
+#MOTD Message
+profile::base::motd::message: |
+  Welcome to the demo environment!  Have fun!
+
+#DNS
+profile::base::dns::search:
+  - demo.lan
+
+profile::base::dns::nameserver:
+  - '10.240.0.10'
+  - '10.240.1.10'
+
+
+# User/Group
+users:
+  testuser1:
+    comment: Example User
+    uid: '2000'
+    home: /home/testuser1
+    groups:
+      - testgroup1
+
+groups:
+  testgroup1:
+    gid: '3000'
+
+# Service defaults definitions
+services:
+  windows:
+    wuauserv:
+      ensure: running
+      enable: true
+
+profile::middleware::apache::default_vhost: true
