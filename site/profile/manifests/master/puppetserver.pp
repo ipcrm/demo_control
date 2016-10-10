@@ -27,6 +27,14 @@ class profile::master::puppetserver {
       merge_behavior => 'deeper',
     }
 
+    file{'/etc/puppetlabs/puppet/autosign.conf':
+      ensure => present,
+      mode   => '0644',
+      owner  => 'pe-puppet',
+      group  => 'pe-puppet',
+      notify => Service['pe-puppetserver'],
+    }
+
     file_line{'require_tty_sudo':
       ensure => 'absent',
       path   => '/etc/sudoers',
