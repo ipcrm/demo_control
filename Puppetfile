@@ -22,6 +22,7 @@ mod 'puppetlabs-registry',         '1.1.3'
 mod 'puppet/windows_firewall',     '1.0.3'
 mod 'puppetlabs-motd',             '1.4.0'
 mod 'puppetlabs-reboot',           '1.2.1'
+mod 'jfryman-selinux',             '0.4.0'
 
 
 # Modules from Repo's
