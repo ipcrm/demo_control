@@ -24,6 +24,5 @@ mod 'puppet/windows_firewall',     '1.0.3'
 
 # Modules from Repo's
 mod 'demo_cis',
-  :git => 'git@github.com:ipcrm/demo_control.git',
-  :ref => 'master'
+  :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git'
 
