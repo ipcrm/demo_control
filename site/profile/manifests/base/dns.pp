@@ -1,8 +1,8 @@
 class profile::base::dns (
-  String $domain    = undef,
-  Array $nameserver = ['8.8.8.8','8.8.8.4'],
-  Array $options    = [],
-  Array $search     = [],
+  Variant[Undef,String] $domain    = undef,
+  Array                 $nameserver = ['8.8.8.8','8.8.8.4'],
+  Array                 $options    = [],
+  Array                 $search     = [],
 ){
 
   case $facts['os']['name'] {

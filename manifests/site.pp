@@ -4,7 +4,7 @@
 File { backup => false }
 
 # Applications managed by App Orchestrator are defined in the site block.
-site {
+#site {
 #  rgbank { 'getting-started':
 #    listen_port => 8010,
 #    nodes       => {
@@ -14,7 +14,7 @@ site {
 #        Node['appserver1a.pdx.puppetlabs.demo'] => [Rgbank::Load[getting-started]],
 #    },
 #  }
-}
+#}
 
 # Set an easier var to find our role
 $role = $trusted['extensions']['pp_role']
