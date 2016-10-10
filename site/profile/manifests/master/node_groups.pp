@@ -16,7 +16,7 @@ class profile::master::node_groups {
     parent               => 'All Nodes',
     rule                 => ['and', ['=', ['fact', 'trusted.certname'], $::clientcert]],
     classes              => {
-      'profile::master' => {},
+      'role::master' => {},
     },
   }
 
@@ -27,7 +27,7 @@ class profile::master::node_groups {
     parent               => 'All Nodes',
     rule                 => ['and', ['=', ['fact', 'trusted.extensions.pp_role'], 'generalserver']],
     classes              => {
-      'profile::base' => {},
+      'role::generalserver' => {},
     },
   }
 
