@@ -21,6 +21,7 @@ mod 'puppetlabs-chocolatey',       '2.0.0'
 mod 'puppetlabs-registry',         '1.1.3'
 mod 'puppet/windows_firewall',     '1.0.3'
 mod 'puppetlabs-motd',             '1.4.0'
+mod 'puppetlabs-reboot',           '1.2.1'
 
 
 # Modules from Repo's
