@@ -27,7 +27,7 @@ groups:
 
 # Service defaults definitions
 services:
-  'windows 2012 R2':
+  'windows2012 R2':
     wuauserv:
       ensure: running
       enable: true
