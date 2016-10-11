@@ -12,7 +12,7 @@ class profile::base::dns (
           ensure             => 'present',
           dsc_address        => $n,
           dsc_addressfamily  => 'IPv4',
-          dsc_interfacealias => 'Ethernet',
+          dsc_interfacealias => 'Red Hat VirtIO Ethernet Adapter',
         }
       }
     }
