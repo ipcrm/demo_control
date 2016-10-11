@@ -9,7 +9,7 @@ class profile::base::dns (
     'Windows': {
       dsc_xdnsserveraddress{'dns-servers':
         ensure             => 'present',
-        dsc_address        => join($nameserver, ','),
+        dsc_address        => $nameserver,
         dsc_addressfamily  => 'IPv4',
         dsc_interfacealias => 'Ethernet',
       }
