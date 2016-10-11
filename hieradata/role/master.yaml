@@ -2,3 +2,4 @@
 puppet_enterprise::profile::master::code_manager_auto_configure: true
 puppet_enterprise::master::code_manager::authenticate_webhook: true
 puppet_enterprise::profile::console::classifier_synchronization_period: 0
+puppet_enterprise::profile::master::app_management: true
