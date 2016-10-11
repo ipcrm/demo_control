@@ -4,7 +4,7 @@ class profile::base::pkgs {
     'Windows': {
 
       require ::profile::base::services
-      contain chocolatey
+      contain ::chocolatey
 
       Package{
         provider => 'chocolatey',
