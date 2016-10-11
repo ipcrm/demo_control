@@ -25,13 +25,14 @@ mod 'jfryman-selinux',             '0.4.0'
 mod 'liamjbennett-win_facts',      '0.0.2'
 mod 'puppetlabs-powershell',       '2.0.3'
 mod 'puppetlabs-dsc',              '1.1.0'
+mod 'tse-winntp',                  '1.0.1'
 
 
 # Modules from Repo's
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git'
 
-mod 'tse-winntp',
-  :git => 'https://github.com/ipcrm/tse-module-winntp.git',
-  :ref => 'cleanup_spec_chars'
+#mod 'tse-winntp',
+#  :git => 'https://github.com/ipcrm/tse-module-winntp.git',
+#  :ref => 'cleanup_spec_chars'
 
