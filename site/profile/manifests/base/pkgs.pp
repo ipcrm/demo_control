@@ -17,7 +17,6 @@ class profile::base::pkgs {
       package { 'powershell':
         ensure          => latest,
         install_options => ['-pre','--ignore-package-exit-codes'],
-        notify          => Reboot['dsc_reboot'],
       }
 
       $dotnetver = hiera('dotnet_ver', '4.6.2')
