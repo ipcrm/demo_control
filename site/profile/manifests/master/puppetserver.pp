@@ -8,6 +8,7 @@ class profile::master::puppetserver {
 
     firewall { '110 puppetmaster allow all': dport  => '8140';  }
     firewall { '110 orchservices allow all': dport  => '8142';  }
+    firewall { '110 orchservice  allow all': dport  => '8143';  }
     firewall { '110 dashboard allow all':    dport  => '443';   }
     firewall { '110 mcollective allow all':  dport  => '61613'; }
 
