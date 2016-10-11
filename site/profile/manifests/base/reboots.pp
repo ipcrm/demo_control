@@ -1,12 +1,29 @@
 class profile::base::reboots {
 
-  if $::kernel == 'Windows' {
+  case $::kernel {
 
-    reboot{'dsc_reboot':
-      when    => pending,
-      timeout => 15,
+    'Windows': {
+
+      reboot{'dsc_reboot':
+        when    => pending,
+        timeout => 15,
+      }
+
     }
 
+    'Linux': {
+
+      reboot { 'selinux':
+        subscribe => Class['selinux::config'],
+        apply     => 'finished',
+        timeout   => 0,
+      }
+
+    }
+
+    default: {}
+
   }
+
 
 }

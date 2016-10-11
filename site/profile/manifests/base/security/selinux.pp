@@ -7,13 +7,6 @@ class profile::base::security::selinux (
       mode   => $selinux_mode,
       notify => Reboot['selinux'],
     }
-
-    reboot { 'selinux':
-      subscribe => Class['selinux::config'],
-      apply     => 'finished',
-      timeout   => 0,
-    }
-
   }
 
 }
