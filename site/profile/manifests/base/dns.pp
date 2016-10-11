@@ -8,7 +8,7 @@ class profile::base::dns (
   case $facts['os']['name'] {
     'Windows': {
       $nameserver.each |$n| {
-        dsc_xdnsserveraddress{$n:
+        dsc_xdnsserveraddress{"dnsserver-${n}":
           ensure             => 'present',
           dsc_address        => $n,
           dsc_addressfamily  => 'IPv4',
