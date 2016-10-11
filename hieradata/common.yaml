@@ -29,7 +29,6 @@ groups:
 services:
   'windows2012 R2':
     wuauserv:
-      ensure: running
       enable: true
 
 profile::middleware::apache::default_vhost: true
