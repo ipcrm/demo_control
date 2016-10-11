@@ -7,13 +7,11 @@ class profile::base::dns (
 
   case $facts['os']['name'] {
     'Windows': {
-      $nameserver.each |$n| {
-        dsc_xdnsserveraddress{$n:
-          ensure             => 'present',
-          dsc_address        => $n,
-          dsc_addressfamily  => 'IPv4',
-          dsc_interfacealias => 'Ethernet',
-        }
+      dsc_xdnsserveraddress{'dns-servers':
+        ensure             => 'present',
+        dsc_address        => $nameserver,
+        dsc_addressfamily  => 'IPv4',
+        dsc_interfacealias => 'Ethernet',
       }
     }
 
