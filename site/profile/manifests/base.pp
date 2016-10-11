@@ -8,13 +8,13 @@ class profile::base(
     host_aliases => [$::hostname],
   }
 
-  contain ::profile::base::dns
   contain ::profile::base::ntp
   contain ::profile::base::motd
   contain ::profile::base::ssh
   contain ::profile::base::services
-  contain ::profile::base::reboots
   contain ::profile::base::pkgs
+  contain ::profile::base::reboots
+  contain ::profile::base::dns
   contain ::profile::base::users_groups
   contain ::profile::base::security
 
