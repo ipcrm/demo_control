@@ -12,7 +12,7 @@ class profile::master::node_groups {
 
   exec{'refresh_classes':
     path        => $::path,
-    command     => "sh -x /etc/puppetlabs/code/${::environment}/scripts/refresh_classes.sh",
+    command     => "/etc/puppetlabs/code/environments/${::environment}/scripts/refresh_classes.sh",
     refreshonly => true,
   }
 
