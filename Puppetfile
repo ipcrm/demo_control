@@ -26,6 +26,7 @@ mod 'liamjbennett-win_facts',      '0.0.2'
 mod 'puppetlabs-powershell',       '2.0.3'
 mod 'puppetlabs-dsc',              '1.1.0'
 mod 'puppet-windowsfeature',       '2.0.0'
+mod 'puppet-iis',                  '2.0.2'
 
 
 # Modules from Repo's
