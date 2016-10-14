@@ -27,6 +27,7 @@ mod 'puppetlabs-powershell',       '2.0.3'
 mod 'puppetlabs-dsc',              '1.1.0'
 mod 'puppet-windowsfeature',       '2.0.0'
 mod 'puppet-iis',                  '2.0.2'
+mod 'puppet-staging',              '2.0.1'
 
 
 # Modules from Repo's
