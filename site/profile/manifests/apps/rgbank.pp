@@ -35,7 +35,6 @@ class profile::apps::rgbank(
     owner   => $::apache::user,
     group   => $::apache::user,
     recurse => true,
-    require => Class['::wordpress'],
   }
 
   staging::deploy { 'theme_rgbank.zip':
