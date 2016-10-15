@@ -30,11 +30,6 @@ class profile::apps::rgbank(
     require       => Mysql::Db[$db_name],
   }
 
-  class {'::profile::apps::wordpress':
-    manage_db => false,
-    docroot   => $docroot,
-  }
-
   file { "${docroot}/wp-content/uploads":
     ensure  => directory,
     owner   => $::apache::user,
