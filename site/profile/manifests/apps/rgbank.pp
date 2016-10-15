@@ -43,16 +43,18 @@ class profile::apps::rgbank(
     require => Class['::wordpress'],
   }
 
-  file {"${docroot}/wp-content/themes/rgbank":
-    ensure  => directory,
-    require => Class['::wordpress'],
-    before  => Staging::Deploy['theme_rgbank.zip'],
-  }
-
   staging::deploy { 'theme_rgbank.zip':
     source  => 'https://github.com/puppetlabs/rgbank/archive/master.zip',
-    target  => "${docroot}/wp-content/themes/rgbank",
-    creates => "${docroot}/wp-content/themes/rgbank/index.php",
+    target  => "${docroot}/wp-content/themes/",
+    creates => "${docroot}/wp-content/themes/rgbank-master/src/index.php",
+    require => Class['::wordpress'],
     notify  => Service['httpd'],
   }
+
+  file { "${docroot}/wp-content/themes/rgbank":
+    ensure  => link,
+    target  => "${docroot}/wp-content/themes/rgbank-master/src",
+    require => Staging::Deploy['theme_rgbank.zip'],
+  }
+
 }
