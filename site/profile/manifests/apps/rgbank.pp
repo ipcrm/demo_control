@@ -41,7 +41,6 @@ class profile::apps::rgbank(
     source  => 'https://github.com/puppetlabs/rgbank/archive/master.zip',
     target  => "${docroot}/wp-content/themes/",
     creates => "${docroot}/wp-content/themes/rgbank-master/src/index.php",
-    require => Class['::wordpress'],
     notify  => Service['httpd'],
   }
 
