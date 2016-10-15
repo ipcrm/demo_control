@@ -1,7 +1,7 @@
 class role::master {
 
   include ::profile::base
-  include ::profile::middleware::apache
+  include ::profile::webserver::apache
   include ::profile::master
 
 }

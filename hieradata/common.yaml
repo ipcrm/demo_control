@@ -31,7 +31,7 @@ services:
     wuauserv:
       enable: true
 
-profile::middleware::apache::default_vhost: true
+profile::webserver::apache::default_vhost: true
 
 #Enable code manager
 puppet_enterprise::profile::master::code_manager_auto_configure: true

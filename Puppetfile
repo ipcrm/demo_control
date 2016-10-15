@@ -28,13 +28,17 @@ mod 'puppetlabs-dsc',              '1.1.0'
 mod 'puppet-windowsfeature',       '2.0.0'
 mod 'puppet-iis',                  '2.0.2'
 mod 'puppet-staging',              '2.0.1'
+mod 'puppetlabs-mysql',            '3.9.0'
+mod 'hunner-wordpress',            '1.0.0'
+mod 'puppetlabs-app_modeling',     '0.2.0'
 
 
 # Modules from Repo's
 mod 'demo_cis',
-  :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git'
+  :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
+  :ref => 'eae56921951fc5d5b97ffc720d43c781258fbfd0'
 
 mod 'tse-winntp',
-  :git => 'https://github.com/ipcrm/tse-module-winntp.git',
-  :ref => 'cleanup_spec_chars'
+  :git => 'https://github.com/puppetlabs/tse-module-winntp.git',
+  :ref => '854e3b517b96adeadeb90d557347cb32c7005a0e'
 

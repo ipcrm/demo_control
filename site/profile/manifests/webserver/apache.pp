@@ -1,4 +1,4 @@
-class profile::middleware::apache (
+class profile::webserver::apache (
   Boolean $default_vhost   = false,
   Boolean $manage_firewall = true,
   Array $firewall_ports    = [80,443],
@@ -24,6 +24,7 @@ class profile::middleware::apache (
         action => accept,
       }
     }
+
   }
 
 }
