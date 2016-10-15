@@ -46,10 +46,10 @@ class profile::apps::rgbank(
   file {"${docroot}/wp-content/themes/rgbank":
     ensure  => directory,
     require => Class['::wordpress'],
-    before  => Staging::Deploy['theme_rgbank.tgz'],
+    before  => Staging::Deploy['theme_rgbank.zip'],
   }
 
-  staging::deploy { 'theme_rgbank.tgz':
+  staging::deploy { 'theme_rgbank.zip':
     source  => 'https://github.com/puppetlabs/rgbank/archive/master.zip',
     target  => "${docroot}/wp-content/themes/rgbank",
     creates => "${docroot}/wp-content/themes/rgbank/index.php",
