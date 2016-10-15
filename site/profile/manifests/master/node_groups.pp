@@ -26,19 +26,13 @@ class profile::master::node_groups {
       'role::master' => {},
     },
   }
-
   node_group { 'role::generalserver':
-    ensure               => present,
+    ensure               => 'present',
+    classes              => {'role::generalserver' => {}},
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and',
-      ['!=', ['fact', 'clientcert'], $::clientcert],
-      ['~', ['fact', 'role'], ''],
-    ],
-    classes              => {
-      'role::generalserver' => {},
-    },
+    rule                 => ['and', ['not', ['~', ['fact', 'role'], 'w+']], ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
   }
 
 }
