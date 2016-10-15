@@ -32,7 +32,7 @@ class profile::master::node_groups {
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and', ['not', ['~', ['fact', 'role'], '.+']], ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
+    rule                 => ['and', ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
   }
 
 }
