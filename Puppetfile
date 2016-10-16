@@ -33,6 +33,7 @@ mod 'hunner-wordpress',            '1.0.0'
 mod 'puppetlabs-app_modeling',     '0.2.0'
 mod 'puppetlabs-vcsrepo',          '1.4.0'
 mod 'puppet-nginx',                '0.4.0'
+mod 'puppetlabs-haproxy',          '1.5.0'
 
 
 # Modules from Repo's
