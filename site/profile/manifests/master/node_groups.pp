@@ -44,6 +44,7 @@ class profile::master::node_groups {
     classes              => {
       'role::webserver_nginx' => {},
     },
+    rule                 => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
   }
 
   node_group { 'role::database_mysql':
@@ -51,6 +52,7 @@ class profile::master::node_groups {
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
+    rule                 => ['and', ['=', ['fact', 'role'], 'database_mysql']],
     classes              => {
       'role::database_mysql' => {},
     },
