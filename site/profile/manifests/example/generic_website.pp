@@ -3,14 +3,17 @@ class profile::example::generic_website {
   if $::kernel == 'Windows' {
 
       $doc_root = 'C:\inetpub\wwwroot\generic_website'
-      windowsfeature { 'IIS':
-        feature_name => [
-          'Web-Server',
-          'Web-WebServer',
-          'Web-Http-Redirect',
-          'Web-Mgmt-Console',
-          'Web-Mgmt-Tools',
-        ],
+
+      $iis_features = [
+        'Web-Server',
+        'Web-WebServer',
+        'Web-Http-Redirect',
+        'Web-Mgmt-Console',
+        'Web-Mgmt-Tools',
+      ]
+
+      windowsfeature { $iis_features:
+        ensure => present,
       }
 
       iis::manage_site {'Default Web Site':
@@ -19,7 +22,7 @@ class profile::example::generic_website {
 
       iis::manage_app_pool {'generic_website':
         require => [
-          Windowsfeature['IIS'],
+          Windowsfeature[$iis_features],
           Iis::Manage_site['Default Web Site'],
           ],
       }
@@ -30,7 +33,7 @@ class profile::example::generic_website {
         ip_address => '*',
         app_pool   => 'generic_website',
         require    => [
-          Windowsfeature['IIS'],
+          Windowsfeature[$iis_features],
           Iis::Manage_app_pool['generic_website']
           ],
       }
