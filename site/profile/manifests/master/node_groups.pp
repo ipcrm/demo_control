@@ -36,13 +36,13 @@ class profile::master::node_groups {
     rule                 => ['and', ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
   }
 
-  node_group { 'role::webserver_apache':
+  node_group { 'role::webserver_nginx':
     ensure               => present,
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
     classes              => {
-      'role::webserver_apache' => {},
+      'role::webserver_nginx' => {},
     },
   }
 
