@@ -42,3 +42,6 @@ mod 'tse-winntp',
   :git => 'https://github.com/puppetlabs/tse-module-winntp.git',
   :ref => '854e3b517b96adeadeb90d557347cb32c7005a0e'
 
+mod 'rgbank',
+  :git => 'https://github.com/puppetlabs/puppetlabs-rgbank.git',
+  :ref => '1b545bc639d727e388da4af1217cc632ecaacc10'
