@@ -44,3 +44,6 @@ puppet_enterprise::profile::orchestrator::use_application_services: true
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
+
+#Localtime
+puppet_enterprise::profile::console::display_local_time: true
