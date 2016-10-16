@@ -1,4 +1,7 @@
 ---
+# Turn on AO for all nodes(by default)
+profile::base::orch_agent: true
+
 #MOTD Message
 profile::base::motd::message: |
   Welcome to the demo environment!  Have fun!
@@ -10,7 +13,6 @@ profile::base::dns::search:
 profile::base::dns::nameserver:
   - '10.240.0.10'
   - '10.240.1.10'
-
 
 # User/Group
 users:
