@@ -31,6 +31,7 @@ mod 'puppet-staging',              '2.0.1'
 mod 'puppetlabs-mysql',            '3.9.0'
 mod 'hunner-wordpress',            '1.0.0'
 mod 'puppetlabs-app_modeling',     '0.2.0'
+mod 'puppetlabs-vcsrepo',          '1.4.0'
 
 
 # Modules from Repo's
