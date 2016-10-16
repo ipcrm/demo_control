@@ -26,6 +26,7 @@ class profile::master::node_groups {
       'role::master' => {},
     },
   }
+
   node_group { 'role::generalserver':
     ensure               => 'present',
     classes              => {'role::generalserver' => {}},
@@ -33,6 +34,26 @@ class profile::master::node_groups {
     override_environment => false,
     parent               => 'All Nodes',
     rule                 => ['and', ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
+  }
+
+  node_group { 'role::webserver_apache':
+    ensure               => present,
+    environment          => 'production',
+    override_environment => false,
+    parent               => 'All Nodes',
+    classes              => {
+      'role::webserver_apache' => {},
+    },
+  }
+
+  node_group { 'role::database_mysql':
+    ensure               => present,
+    environment          => 'production',
+    override_environment => false,
+    parent               => 'All Nodes',
+    classes              => {
+      'role::database_mysql' => {},
+    },
   }
 
 }
