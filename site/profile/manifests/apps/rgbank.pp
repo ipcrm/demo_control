@@ -30,11 +30,18 @@ class profile::apps::rgbank(
     require       => Mysql::Db[$db_name],
   }
 
+  class {'::profile::apps::wordpress':
+    manage_db => false,
+    docroot   => $docroot,
+  }
+
   file { "${docroot}/wp-content/uploads":
     ensure  => directory,
     owner   => $::apache::user,
     group   => $::apache::user,
     recurse => true,
+    require => Class['::wordpress'],
+    before  => Staging::Deploy['theme_rgbank.zip'],
   }
 
   staging::deploy { 'theme_rgbank.zip':
@@ -42,6 +49,7 @@ class profile::apps::rgbank(
     target  => "${docroot}/wp-content/themes/",
     creates => "${docroot}/wp-content/themes/rgbank-master/src/index.php",
     notify  => Service['httpd'],
+    require => Class['::wordpress'],
   }
 
   file { "${docroot}/wp-content/themes/rgbank":
