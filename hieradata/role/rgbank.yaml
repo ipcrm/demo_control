@@ -1,3 +1,4 @@
 profile::webserver::default_vhost: false
 profile::apps::wordpress::manage_db: false
 profile::apps::wordpress::docroot: '/var/www/rgbank'
+profile::base::orch_agent: true
