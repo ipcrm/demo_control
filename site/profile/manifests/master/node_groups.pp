@@ -63,7 +63,6 @@ class profile::master::node_groups {
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'role'], 'rgbank_standalone']],
     classes              => {
       'role::rgbank_standalone' => {},
     },
