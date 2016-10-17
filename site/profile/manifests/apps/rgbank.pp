@@ -31,8 +31,9 @@ class profile::apps::rgbank(
   }
 
   class {'::profile::apps::wordpress':
-    manage_db => false,
-    docroot   => $docroot,
+    manage_db  => false,
+    docroot    => $docroot,
+    enable_ssl => true,
   }
 
   file { "${docroot}/wp-content/uploads":
