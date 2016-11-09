@@ -1,5 +1,7 @@
 class profile::database::sqlserver {
 
-  contain ::tse_sqlserver
+  class {'::tse_sqlserver':
+    admin_user => 'Administrator'
+  }
 
 }
