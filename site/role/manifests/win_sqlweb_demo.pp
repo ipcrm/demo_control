@@ -1,7 +1,7 @@
 class role::win_sqlweb_demo {
 
-  include tse_sqlserver
-  include sqlwebapp::db
-  include sqlwebapp
+  include ::profile::base
+  include ::profile::database::sqlserver
+  include ::profile::apps::cloudshop
 
 }
