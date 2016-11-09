@@ -38,6 +38,7 @@ mod 'mayflower/php',               '3.4.1'
 mod 'puppetlabs-mount_iso',        '0.1.0'
 mod 'puppetlabs-sqlserver',        '1.1.4'
 mod 'puppetlabs-acl',              '1.1.2'
+mod 'reidmv-unzip',                '0.1.2'
 
 # Modules from Repo's
 mod 'demo_cis',
