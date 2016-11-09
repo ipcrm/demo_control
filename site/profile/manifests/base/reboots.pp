@@ -19,10 +19,14 @@ class profile::base::reboots {
 
     'Linux': {
 
-      reboot { 'selinux':
-        subscribe => Class['selinux::config'],
-        apply     => 'finished',
-        timeout   => 0,
+      if defined(Class['selinux']) {
+
+        reboot { 'selinux':
+          subscribe => Class['selinux::config'],
+          apply     => 'finished',
+          timeout   => 0,
+        }
+
       }
 
     }
