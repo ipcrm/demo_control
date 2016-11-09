@@ -19,7 +19,7 @@ class profile::base::reboots {
 
     'Linux': {
 
-      if defined(Class['selinux']) {
+      if $::facts['os']['family'] == 'RedHat' {
 
         reboot { 'selinux':
           subscribe => Class['selinux::config'],
