@@ -1,6 +1,6 @@
 class profile::base::security::firewall {
 
-  case $::kernel {
+  case $::osfamily {
     'Windows': {
 
       class { 'windows_firewall':
@@ -9,7 +9,7 @@ class profile::base::security::firewall {
 
     }
 
-    default: {
+    'RedHat': {
       Firewall {
         require => undef,
         notify  => Service['iptables'],
@@ -35,6 +35,8 @@ class profile::base::security::firewall {
       }
 
     }
+
+    default: {}
 
   }
 
