@@ -38,9 +38,6 @@ mod 'mayflower/php',               '3.4.1'
 mod 'puppetlabs-mount_iso',        '0.1.0'
 mod 'puppetlabs-sqlserver',        '1.1.4'
 mod 'puppetlabs-acl',              '1.1.2'
-mod 'reidmv-unzip',                '0.1.2'
-
-
 
 # Modules from Repo's
 mod 'demo_cis',
@@ -56,9 +53,9 @@ mod 'rgbank',
   :ref => '1b545bc639d727e388da4af1217cc632ecaacc10'
 
 mod 'sqlwebapp',
-  :git => 'https://github.com/velocity303/puppet-sqlwebapp.git',
-  :ref => '741947190a16e92f2c75ebebe565bcccf8631b51'
+  :git => 'https://github.com/ipcrm/puppet-sqlwebapp.git',
+  :ref => 'master'
 
 mod 'tse_sqlserver',
-  :git => 'https://github.com/puppetlabs/tse-module-tse_sqlserver.git',
+  :git => 'https://github.com/ipcrm/tse-module-tse_sqlserver.git',
   :ref => 'master'
