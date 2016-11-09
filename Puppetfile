@@ -60,5 +60,5 @@ mod 'sqlwebapp',
   :ref => '741947190a16e92f2c75ebebe565bcccf8631b51'
 
 mod 'tse_sqlserver',
-  :git => 'https://github.com/puppetlabs/tse-module-tse_sqlserver.git',
-  :ref => '2c6cdf822b47a72a1b1cf94f3aaea6268b0b19ac'
+  :git => 'https://github.com/ipcrm/tse-module-tse_sqlserver.git',
+  :ref => 'master'
