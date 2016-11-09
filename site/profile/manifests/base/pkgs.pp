@@ -25,7 +25,7 @@ class profile::base::pkgs {
         notify => Reboot['dsc_reboot'],
       }
 
-      package { ['uniextract', 'git']:
+      package { ['uniextract', 'git', '7zip']:
         ensure   => present,
       }
 
