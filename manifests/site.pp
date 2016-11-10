@@ -13,4 +13,16 @@ site {
       Node['lb2.demo.lan']  => [Rgbank::Load[getting-started]],
     },
   }
+
+  cloudshop { 'split':
+    dbinstance => 'MYINSTANCE',
+    dbuser     => 'CloudShop',
+    dbpassword => 'Azure$123',
+    dbname     => 'AdventureWorks2012',
+    nodes      => {
+      Node['example7.demo.lan'] => Cloudshop::App['split'],
+      Node['example8.demo.lan'] => Cloudshop::Db['split'],
+    },
+  }
+
 }
