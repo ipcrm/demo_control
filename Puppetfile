@@ -62,5 +62,5 @@ mod 'tse_sqlserver',
   :ref => 'master'
 
 mod 'cloudshop',
-  :git => 'https://github.com/velocity303/puppet-cloudshop.git',
-  :ref => '50d44639d47b911bdc444fd9b03cd7118fc514cc'
+  :git => 'https://github.com/ipcrm/puppet-cloudshop.git',
+  :ref => 'master'
