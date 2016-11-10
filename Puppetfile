@@ -60,3 +60,7 @@ mod 'sqlwebapp',
 mod 'tse_sqlserver',
   :git => 'https://github.com/ipcrm/tse-module-tse_sqlserver.git',
   :ref => 'master'
+
+mod 'cloudshop',
+  :git => 'https://github.com/velocity303/puppet-cloudshop.git',
+  :ref => '50d44639d47b911bdc444fd9b03cd7118fc514cc'
