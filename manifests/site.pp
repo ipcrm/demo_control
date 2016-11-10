@@ -11,6 +11,8 @@ site {
       Node['db2.demo.lan']  => [Rgbank::Db[getting-started]],
       Node['app2.demo.lan'] => [Rgbank::Web[appserver-01_getting-started]],
       Node['app3.demo.lan'] => [Rgbank::Web[appserver-02_getting-started]],
+      Node['app4.demo.lan'] => [Rgbank::Web[appserver-01_getting-started]],
+      Node['app5.demo.lan'] => [Rgbank::Web[appserver-02_getting-started]],
       Node['lb2.demo.lan']  => [Rgbank::Load[getting-started]],
     },
   }
@@ -34,5 +36,3 @@ site {
 
 
 
-#      Node['app4.demo.lan'] => [Rgbank::Web[appserver-01_getting-started]],
-#      Node['app5.demo.lan'] => [Rgbank::Web[appserver-02_getting-started]],
