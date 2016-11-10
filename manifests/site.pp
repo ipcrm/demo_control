@@ -16,7 +16,6 @@ site {
 #  }
 
   cloudshop { 'split':
-    administrator => 'Administrator',
     dbinstance    => 'MYINSTANCE',
     dbuser        => 'CloudShop',
     dbpassword    => 'Azure$123',
