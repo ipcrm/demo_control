@@ -15,18 +15,19 @@ site {
     },
   }
 
-#  cloudshop { 'split':
-#    dbinstance    => 'MYINSTANCE',
-#    dbuser        => 'CloudShop',
-#    dbpassword    => 'Azure$123',
-#    dbname        => 'AdventureWorks2012',
-#    nodes         => {
-#      Node['example7.demo.lan'] => Cloudshop::App['split'],
-#      Node['example8.demo.lan'] => Cloudshop::Db['split'],
-#    },
-#  }
-#      Node['app4.demo.lan'] => [Rgbank::Web[appserver-03_getting-started]],
-#      Node['app5.demo.lan'] => [Rgbank::Web[appserver-04_getting-started]],
+  cloudshop { 'split':
+    dbinstance    => 'MYINSTANCE',
+    dbuser        => 'CloudShop',
+    dbpassword    => 'Azure$123',
+    dbname        => 'AdventureWorks2012',
+    nodes         => {
+      Node['example7.demo.lan'] => Cloudshop::App['split'],
+      Node['example8.demo.lan'] => Cloudshop::Db['split'],
+    },
+  }
+
+  #      Node['app4.demo.lan'] => [Rgbank::Web[appserver-03_getting-started]],
+  #    Node['app5.demo.lan'] => [Rgbank::Web[appserver-04_getting-started]],
 
 }
 
