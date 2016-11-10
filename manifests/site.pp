@@ -27,3 +27,12 @@ site {
 #  }
 
 }
+
+
+
+
+
+
+
+#      Node['app4.demo.lan'] => [Rgbank::Web[appserver-01_getting-started]],
+#      Node['app5.demo.lan'] => [Rgbank::Web[appserver-02_getting-started]],
