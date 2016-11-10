@@ -38,6 +38,23 @@ class profile::example::generic_website {
           ],
       }
 
+      iis::manage_binding {"${::fqdn}-port-8080":
+        site_name => $::fqdn,
+        protocol  => 'http',
+        port      => '8080',
+      }
+
+      windows_firewall::exception { 'HTTPTRAFFIC-8080':
+        ensure       => present,
+        direction    => 'in',
+        action       => 'Allow',
+        enabled      => 'yes',
+        protocol     => 'TCP',
+        local_port   => '8080',
+        display_name => 'HTTP Inbound 8080',
+        description  => 'Inbound rule for HTTP Server - Port 8080',
+      }
+
       windows_firewall::exception { 'HTTPTRAFFIC':
         ensure       => present,
         direction    => 'in',
