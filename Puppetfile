@@ -40,8 +40,9 @@ mod 'puppetlabs-sqlserver',        '1.1.4'
 mod 'puppetlabs-acl',              '1.1.2'
 mod 'reidmv-unzip',                '0.1.2'
 mod 'elasticsearch/elasticsearch', '0.13.2'
-mod 'richardc/datacat', '0.6.2'
-mod 'lesaux/kibana4', '1.0.17'
+mod 'richardc/datacat',            '0.6.2'
+mod 'lesaux/kibana4',              '1.0.17'
+mod 'puppetlabs-java',             '1.6.0'
 
 # Modules from Repo's
 mod 'demo_cis',
