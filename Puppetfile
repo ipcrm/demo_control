@@ -39,6 +39,9 @@ mod 'puppetlabs-mount_iso',        '0.1.0'
 mod 'puppetlabs-sqlserver',        '1.1.4'
 mod 'puppetlabs-acl',              '1.1.2'
 mod 'reidmv-unzip',                '0.1.2'
+mod 'elasticsearch/elasticsearch', '0.13.2'
+mod 'richardc/datacat', '0.6.2'
+mod 'lesaux/kibana4', '1.0.17'
 
 # Modules from Repo's
 mod 'demo_cis',
@@ -63,4 +66,8 @@ mod 'tse_sqlserver',
 
 mod 'cloudshop',
   :git => 'https://github.com/ipcrm/puppet-cloudshop.git',
+  :ref => 'master'
+
+mod 'elk_report',
+  :git => 'https://github.com/ipcrm/ipcrm-elk_report.git',
   :ref => 'master'
