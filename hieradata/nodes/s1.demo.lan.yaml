@@ -1,4 +1,4 @@
-interfaces:
+profile::cumulus::interfaces:
   lo:
     iface: lo inet loopback
     address: 10.2.1.3/32
