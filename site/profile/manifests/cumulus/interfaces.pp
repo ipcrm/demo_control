@@ -1,8 +1,8 @@
 class profile::cumulus::interfaces (
-  $interfaces = {}
+  $int_config = {}
 ){
 
-  if !empty($interfaces) {
+  if !empty($int_config) {
 
     file {'/etc/network/interfaces':
       ensure  => present,
