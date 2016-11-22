@@ -1,0 +1,15 @@
+service integrated-vtysh-config
+
+interface swp1
+  ip ospf network point-to-point
+
+interface swp2
+  ip ospf network point-to-point
+
+router-id <%= @router_id %>
+
+router ospf
+ ospf router-id <% @router_id %>
+ redistribute connected
+ network <%= @router_id %>/32 area 0.0.0.0
+ network 10.4.1.0/24 area 0.0.0.0

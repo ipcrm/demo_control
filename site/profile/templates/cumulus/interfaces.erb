@@ -1,0 +1,5 @@
+<% @interfaces.each do |val| -%>
+auto <%= val %>
+  iface <%= val %><%= @interfaces[val][iface] %>
+  <%- if @interface[val][address] -%> <%= @inteface[val][address] %> <%- end -%>
+<% end -%>
