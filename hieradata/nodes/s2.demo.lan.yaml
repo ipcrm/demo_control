@@ -8,7 +8,7 @@ profile::cumulus::interfaces::int_config:
     iface: swp1
     address: 10.2.1.4/32
   swp2:
-    iface: swp1
+    iface: swp2
     address: 10.2.1.4/32
   swp3:
     iface: swp3
