@@ -47,3 +47,14 @@ puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
 
 #Localtime
 puppet_enterprise::profile::console::display_local_time: true
+
+# Global Bridge
+global_bridge:
+  bridge:
+    iface: bridge
+    attributes:
+      'bridge-vlan-aware': yes
+      'bridge-ports': swp4 swp5
+      'bridge-vids': 2-5
+      'bridge-pvid': 6
+      'bridge-stp': on

@@ -1,4 +1,4 @@
-<% @int_config.each do |key,hash| -%>
+<% @all_config.each do |key,hash| -%>
 auto <%= key %>
 iface <%= hash['iface'] %>
   <%- if not hash['attributes'].nil? -%>
