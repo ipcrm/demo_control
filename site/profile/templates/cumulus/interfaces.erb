@@ -1,5 +1,5 @@
 <% @int_config.each do |val| -%>
 auto <%= val %>
-  iface <%= val %><%= @int_config[val][iface] %>
-  <%- if @int_config[val][address] -%> <%= @int_config[val][address] %> <%- end -%>
+  iface <%= val %><%= @int_config[val]['iface'] %>
+  <%- if @int_config[val]['address'] -%> <%= @int_config[val]['address'] %> <%- end -%>
 <% end -%>
