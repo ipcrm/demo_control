@@ -43,6 +43,10 @@ mod 'elasticsearch/elasticsearch', '0.13.2'
 mod 'richardc/datacat',            '0.6.2'
 mod 'lesaux/kibana4',              '1.0.17'
 mod 'puppetlabs-java',             '1.6.0'
+mod 'cumuluslinux-cumulus_interfaces',       '1.2.3'
+mod 'cumuluslinux-cumulus_license',          '1.1.0'
+mod 'cumuluslinux-cumulus_ports',            '1.0.3'
+mod 'cumuluslinux-cumulus_interface_policy', '1.0.3'
 
 # Modules from Repo's
 mod 'demo_cis',
