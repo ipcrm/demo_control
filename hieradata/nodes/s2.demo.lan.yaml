@@ -12,3 +12,4 @@ profile::cumulus::interfaces::int_config:
     address: 10.2.1.4/32
   swp3:
     iface: swp3
+profile::cumulus::quagga::router_id: 10.2.1.4
