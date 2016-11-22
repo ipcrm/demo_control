@@ -68,22 +68,13 @@ class profile::master::node_groups {
     },
   }
 
-  node_group { 'role::cmlx_spine':
+  node_group { 'role::cumulus':
     ensure               => 'present',
-    classes              => {'role::cmlx_spine' => {}},
+    classes              => {'role::cumulus' => {}},
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
     rule                 => ['and', ['=', ['fact', 'role'], 'cmlx_spine']],
-  }
-
-  node_group { 'role::cmlx_leaf':
-    ensure               => 'present',
-    classes              => {'role::cmlx_leaf' => {}},
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'role'], 'cmlx_leaf']],
   }
 
 }
