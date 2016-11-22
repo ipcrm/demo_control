@@ -10,6 +10,6 @@ router-id <%= @router_id %>
 
 router ospf
  ospf router-id <% @router_id %>
- <% @network_list.each do |net| -%>
+ <%- @network_list.each do |net| -%>
  network <%= net %> area 0.0.0.0
- <% end -%>
+ <% end %>
