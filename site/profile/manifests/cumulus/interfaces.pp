@@ -3,7 +3,7 @@ class profile::cumulus::interfaces (
 ){
 
   if !empty($int_config) {
-    $all_config = merge(hiera('global_bridge',undef), $int_config)
+    $all_config = merge(hiera('global_bridge',{}), $int_config)
 
     file {'/etc/network/interfaces':
       ensure  => present,
