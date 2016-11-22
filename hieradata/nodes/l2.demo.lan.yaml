@@ -1,17 +1,19 @@
 profile::cumulus::interfaces::int_config:
   lo:
     iface: lo inet loopback
-    address: 10.2.1.4/32
+    address: 10.2.1.2/32
   eth0:
     iface: eth0 inet dhcp
   swp1:
     iface: swp1
-    address: 10.2.1.4/32
+    address: 10.2.1.2/32
   swp2:
     iface: swp1
-    address: 10.2.1.4/32
+    address: 10.2.1.2/32
   swp3:
     iface: swp3
-profile::cumulus::quagga::router_id: 10.2.1.4
+    address: 10.4.2.1/24
+profile::cumulus::quagga::router_id: 10.2.1.2
 profile::cumulus::quagga::network_list:
-  - 10.2.1.4/32
+  - 10.2.1.2/32
+  - 10.4.2.0/24

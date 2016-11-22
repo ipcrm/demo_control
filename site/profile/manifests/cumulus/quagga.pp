@@ -1,5 +1,6 @@
 class profile::cumulus::quagga (
   String $router_id,
+  Array  $network_list,
 ){
 
   file { '/etc/quagga/Quagga.conf':

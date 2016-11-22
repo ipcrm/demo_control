@@ -10,6 +10,6 @@ router-id <%= @router_id %>
 
 router ospf
  ospf router-id <% @router_id %>
- redistribute connected
- network <%= @router_id %>/32 area 0.0.0.0
- network 10.4.1.0/24 area 0.0.0.0
+ <% @network_list.each do |net| -%>
+ network <%= net %> area 0.0.0.0
+ <% end -%>
