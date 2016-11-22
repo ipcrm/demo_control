@@ -1,5 +1,8 @@
 <% @int_config.each do |key,hash| -%>
 auto <%= key %>
   iface <%= hash['iface'] %>
-  <%- if hash['address'] -%>address <%= hash['address'] %> <%- end %>
+  <%- if hash['address'] -%>
+    address <%= hash['address'] %>
+  <%- end %>
+
 <% end -%>
