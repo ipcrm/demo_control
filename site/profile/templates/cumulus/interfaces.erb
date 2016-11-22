@@ -1,6 +1,6 @@
 <% @int_config.each do |key,hash| -%>
 auto <%= key %>
-  iface <%= hash['iface'] %>
+iface <%= hash['iface'] %>
   <%- if not hash['attributes'].nil? -%>
   <%- hash['attributes'].each do |a,v| -%>
   <%= a %><%= v %>
