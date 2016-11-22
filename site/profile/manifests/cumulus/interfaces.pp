@@ -12,11 +12,11 @@ class profile::cumulus::interfaces (
       content => template('profile/cumulus/interfaces.erb'),
     }
 
-    service {'networking':
-      ensure    => running,
-      enable    => true,
-      subscribe => File['/etc/network/interfaces'],
-    }
+#    service {'networking':
+#      ensure    => running,
+#      enable    => true,
+#      subscribe => File['/etc/network/interfaces'],
+#    }
 
   }
 
