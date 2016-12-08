@@ -73,3 +73,10 @@ mod 'cloudshop',
 mod 'elk_report',
   :git => 'https://github.com/ipcrm/ipcrm-elk_report.git',
   :ref => 'master'
+
+
+mod 'team_x',
+  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
+  :branch => :control_branch,
+  :default_branch => 'master',
+  :install_path => 'hieradata'
