@@ -31,6 +31,15 @@ class profile::master::node_groups {
     parent               => 'roles',
   }
 
+  node_group { 'role::master':
+    parent  => 'All Nodes',
+    rule    => ['and', ['=', ['fact', 'clientcert'], $::clientcert]],
+    classes => {
+      'role::master' => {},
+    },
+  }
+
+
   node_group { 'generalserver':
     rule => [
       'and', [
@@ -50,13 +59,6 @@ class profile::master::node_groups {
       'role::webserver_nginx' => {},
     },
     rule    => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
-  }
-
-  node_group { 'master':
-    rule    => ['and', ['=', ['fact', 'clientcert'], $::clientcert]],
-    classes => {
-      'role::master' => {},
-    },
   }
 
   node_group { 'database_mysql':
