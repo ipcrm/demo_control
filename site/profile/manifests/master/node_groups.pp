@@ -16,64 +16,79 @@ class profile::master::node_groups {
     refreshonly => true,
   }
 
-  node_group { 'role::master':
+  node_group { 'roles':
     ensure               => present,
     environment          => 'production',
     override_environment => false,
     parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'clientcert'], $::clientcert]],
-    classes              => {
+    rule                 => [],
+    classes              => {},
+  }
+
+
+  Node_group {
+    ensure               => present,
+    environment          => 'production',
+    override_environment => false,
+    parent               => 'roles',
+  }
+
+  node_group { 'generalserver':
+    rule => [
+      'and', [
+        'not', [
+          '=', ['fact', 'osfamily'], 'cisco-wrlinux']
+      ], [
+        'not', [
+          '~', ['fact', 'role'], '\w+']
+      ], [
+        'not', ['=', ['fact', 'clientcert'], 'master.demo.lan']
+        ]
+    ],
+  }
+
+  node_group { 'webserver_nginx':
+    classes => {
+      'role::webserver_nginx' => {},
+    },
+    rule    => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
+  }
+
+  node_group { 'master':
+    rule    => ['and', ['=', ['fact', 'clientcert'], $::clientcert]],
+    classes => {
       'role::master' => {},
     },
   }
 
-  node_group { 'role::generalserver':
-    ensure               => 'present',
-    classes              => {'role::generalserver' => {}},
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
-    rule                 => ['and', ['not', ['=', ['fact', 'osfamily'], 'cisco-wrlinux']], ['not', ['~', ['fact', 'role'], '\w+']], ['not', ['=', ['fact', 'clientcert'], 'master.demo.lan']]],
-  }
-
-  node_group { 'role::webserver_nginx':
-    ensure               => present,
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
-    classes              => {
-      'role::webserver_nginx' => {},
-    },
-    rule                 => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
-  }
-
-  node_group { 'role::database_mysql':
-    ensure               => present,
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
-    rule                 => ['and', ['=', ['fact', 'role'], 'database_mysql']],
-    classes              => {
+  node_group { 'database_mysql':
+    rule    => ['and', ['=', ['fact', 'role'], 'database_mysql']],
+    classes => {
       'role::database_mysql' => {},
     },
   }
 
-  node_group { 'role::rgbank_standalone':
-    ensure               => present,
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
-    classes              => {
+  node_group { 'cumulus':
+    classes              => {'role::cumulus' => {}},
+  }
+
+  node_group { 'apps':
+    classes              => {},
+  }
+
+  node_group { 'rgbank_standalone':
+    parent  => 'apps',
+    classes => {
       'role::rgbank_standalone' => {},
     },
   }
 
-  node_group { 'role::cumulus':
-    ensure               => 'present',
-    classes              => {'role::cumulus' => {}},
-    environment          => 'production',
-    override_environment => false,
-    parent               => 'All Nodes',
+  node_group { 'jenkins_master':
+    parent  => 'apps',
+    classes => {
+      'role::jenkins_master' => {},
+    },
   }
+
 
 }
