@@ -44,6 +44,7 @@ mod 'richardc/datacat',            '0.6.2'
 mod 'lesaux/kibana4',              '1.0.17'
 mod 'puppetlabs-java',             '1.6.0'
 mod 'puppetlabs-ciscopuppet',      '1.4.1'
+mod 'rtyler-jenkins',              '1.7.0'
 
 # Modules from Repo's
 mod 'demo_cis',
