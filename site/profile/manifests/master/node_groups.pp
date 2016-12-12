@@ -41,7 +41,7 @@ class profile::master::node_groups {
 
 
   node_group { 'generalserver':
-    rule => [
+    rule    => [
       'and', [
         'not', [
           '=', ['fact', 'osfamily'], 'cisco-wrlinux']
@@ -52,12 +52,11 @@ class profile::master::node_groups {
         'not', ['=', ['fact', 'clientcert'], 'master.demo.lan']
         ]
     ],
+    classes => { 'role::generalserver' => {}, },
   }
 
   node_group { 'webserver_nginx':
-    classes => {
-      'role::webserver_nginx' => {},
-    },
+    classes => { 'role::webserver_nginx' => {}, },
     rule    => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
   }
 
@@ -66,6 +65,16 @@ class profile::master::node_groups {
     classes => {
       'role::database_mysql' => {},
     },
+  }
+
+  node_group { 'sqlserver':
+    classes => {'role::sqlserver' => {}},
+    rule    => ['or', ['=', ['fact', 'role'], 'sqlwebapp'], ['=', ['fact', 'role'], 'database_sqlserver']],
+  }
+
+  node_group { 'webserver_iis':
+    classes => {'role::webserver_iis' => {}},
+    rule    => ['or', ['=', ['fact', 'role'], 'sqlwebapp'], ['=', ['fact', 'role'], 'webserver_iis']],
   }
 
   node_group { 'cumulus':
@@ -88,6 +97,18 @@ class profile::master::node_groups {
     classes => {
       'role::jenkins_master' => {},
     },
+  }
+
+  node_group { 'elasticsearch':
+    parent  => 'apps',
+    classes => {'role::elasticsearch' => {}},
+    rule    => ['or', ['=', 'name', 'elasticsearch.demo.lan']],
+  }
+
+  node_group { 'role::master_elasticsearch':
+    parent  => 'All Nodes',
+    classes => {'elk_report' => {'elkreport_config' => {'host' => 'elasticsearch.demo.lan'}}},
+    rule    => ['or', ['=', 'name', 'master.demo.lan']],
   }
 
 
