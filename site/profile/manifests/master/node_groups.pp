@@ -94,9 +94,8 @@ class profile::master::node_groups {
 
   node_group { 'jenkins_master':
     parent  => 'apps',
-    classes => {
-      'role::jenkins_master' => {},
-    },
+    classes => { 'role::jenkins_master' => {}, },
+    rule    => ['and', ['=', ['fact', 'role'], 'jenkins_master']],
   }
 
   node_group { 'elasticsearch':
