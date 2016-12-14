@@ -12,7 +12,7 @@ class profile::master::puppetserver {
     firewall { '110 dashboard allow all':    dport  => '443';   }
     firewall { '110 mcollective allow all':  dport  => '61613'; }
 
-    package {'http-hiera':
+    package {'hiera-http':
       ensure   => present,
       provider => puppetserver_gem,
     } ->
