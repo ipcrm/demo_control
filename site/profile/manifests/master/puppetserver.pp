@@ -29,8 +29,9 @@ class profile::master::puppetserver {
         'role/%{role}',
         'common',
       ],
-      eyaml               => true,
-      merge_behavior      => 'deeper',
+      eyaml          => true,
+      merge_behavior => 'deeper',
+      backends       => ['eyaml','http'],
       backend_options     => {
         'http'            => {
           'host'          => 'jenkins.demo.lan',

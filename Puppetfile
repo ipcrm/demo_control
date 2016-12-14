@@ -4,7 +4,7 @@ forge "http://forge.puppetlabs.com"
 mod "puppetlabs/inifile",          '1.6.0'
 mod "puppetlabs/stdlib",           '4.12.0'
 mod "puppetlabs/concat",           '2.2.0'
-mod "puppet/hiera",                '2.1.2'
+mod "puppet/hiera",                '2.3.0'
 mod "puppetlabs/ntp",              '4.2.0'
 mod "puppetlabs/accounts",         '1.0.0'
 mod "ghoneycutt/dnsclient",        '3.5.1'
