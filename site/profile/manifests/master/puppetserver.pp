@@ -31,7 +31,7 @@ class profile::master::puppetserver {
       ],
       eyaml          => true,
       merge_behavior => 'deeper',
-      backends       => ['eyaml','http'],
+      backends       => ['yaml','eyaml','http'],
       backend_options     => {
         'http'            => {
           'host'          => 'jenkins.demo.lan',
