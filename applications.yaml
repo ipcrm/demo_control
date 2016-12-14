@@ -1,0 +1,24 @@
+---
+dev:
+  rgbank:
+    dev-0:
+      components:
+        ['Rgbank::Web','Rgbank::Db', 'Rgbank::Load']:
+          - rgbank-dev.demo.lan
+
+staging:
+  rgbank:
+    staging-0:
+      parameters:
+        db_username: 'staginguser'
+        db_password: 'myawesomepassword'
+      components:
+        ['Rgbank::Web','Rgbank::Db', 'Rgbank::Load']:
+          - rgbank-staging.demo.lan
+
+production:
+  rgbank:
+    production-static:
+      components:
+        ['Rgbank::Web','Rgbank::Db', 'Rgbank::Load']:
+          - rgbank-prod.demo.lan
