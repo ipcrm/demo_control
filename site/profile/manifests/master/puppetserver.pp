@@ -12,10 +12,15 @@ class profile::master::puppetserver {
     firewall { '110 dashboard allow all':    dport  => '443';   }
     firewall { '110 mcollective allow all':  dport  => '61613'; }
 
+    package {'http-hiera':
+      ensure   => present,
+      provider => puppetserver_gem,
+    } ->
+
     class { 'hiera':
-      datadir_manage => false,
-      datadir        => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
-      hierarchy      => [
+      datadir_manage      => false,
+      datadir             => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
+      hierarchy           => [
         'nodes/%{clientcert}',
         '%{environment}/%{role}',
         '%{environment}/common',
@@ -24,8 +29,25 @@ class profile::master::puppetserver {
         'role/%{role}',
         'common',
       ],
-      eyaml          => true,
-      merge_behavior => 'deeper',
+      eyaml               => true,
+      merge_behavior      => 'deeper',
+      backend_options     => {
+        'http'            => {
+          'host'          => 'jenkins.demo.lan',
+          'port'          => '8080',
+          'output'        => 'json',
+          'use_auth'      => 'true',
+          'auth_user'     => 'admin',
+          'auth_pass'     => 'puppetlabs',
+          'cache_timeout' => 10,
+          'failure'       => 'graceful',
+          'paths'         => [
+            "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
+            "/hiera/lookup?scope=%{::virtual}&key=%{key}",
+            "/hiera/lookup?scope=%{::environment}&key=%{key}"
+          ],
+        }
+      }
     }
 
     if defined(Service['pe-puppetserver']){
