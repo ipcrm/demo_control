@@ -1,8 +1,11 @@
-class profile::apps::jenkins {
+class profile::apps::jenkins (
+  $version = '1.642.3',
+){
 
   class { '::jenkins':
+    version            => $version,
     configure_firewall => true,
-    plugin_hash        => {
+      plugin_hash           => {
       swarm                 => {},
       greenballs            => {},
       git                   => {},
