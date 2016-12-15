@@ -1,5 +1,5 @@
 class profile::apps::jenkins (
-  $version = '1.642.3',
+  $version = '2.19.4',
 ){
 
   class { '::jenkins':
