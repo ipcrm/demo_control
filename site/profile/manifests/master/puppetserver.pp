@@ -49,7 +49,7 @@ class profile::master::puppetserver {
 #            "/hiera/lookup?scope=%{::environment}&key=%{key}"
 #          ],
 #        }
-      }
+#      }
     }
 
     if defined(Service['pe-puppetserver']){
