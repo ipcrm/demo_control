@@ -32,24 +32,24 @@ class profile::master::puppetserver {
       eyaml           => true,
       eyaml_extension => 'yaml',
       merge_behavior  => 'deeper',
-      #      backends        => ['eyaml','http'],
-#      backend_options     => {
-#        'http'            => {
-#          'host'          => 'jenkins.demo.lan',
-#          'port'          => '8080',
-#          'output'        => 'json',
-#          'use_auth'      => 'true',
-#          'auth_user'     => 'admin',
-#          'auth_pass'     => 'puppetlabs',
-#          'cache_timeout' => 10,
-#          'failure'       => 'graceful',
-#          'paths'         => [
-#            "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
-#            "/hiera/lookup?scope=%{::virtual}&key=%{key}",
-#            "/hiera/lookup?scope=%{::environment}&key=%{key}"
-#          ],
-#        }
-#      }
+      backends        => ['eyaml','http'],
+      backend_options     => {
+        'http'            => {
+          'host'          => 'jenkins.demo.lan',
+          'port'          => '8080',
+          'output'        => 'json',
+          'use_auth'      => 'true',
+          'auth_user'     => 'admin',
+          'auth_pass'     => 'puppetlabs',
+          'cache_timeout' => 10,
+          'failure'       => 'graceful',
+          'paths'         => [
+            "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
+            "/hiera/lookup?scope=%{::virtual}&key=%{key}",
+            "/hiera/lookup?scope=%{::environment}&key=%{key}"
+          ],
+        }
+      }
     }
 
     if defined(Service['pe-puppetserver']){
