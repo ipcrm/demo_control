@@ -76,6 +76,8 @@ mod 'elk_report',
   :git => 'https://github.com/ipcrm/ipcrm-elk_report.git',
   :ref => 'master'
 
+mod 'profile_websphere',
+  :git => 'https://github.com/ipcrm/pov-usecase-websphere.git'
 
 mod 'team_x',
   :git => 'git@github.com:ipcrm/teamx_hieradata.git',
