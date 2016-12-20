@@ -11,7 +11,7 @@ class profile::base::pkgs {
         require  => [
           Class['chocolatey'],
           Service['wuauserv'],
-        ]
+        ],
       }
 
       package { 'powershell':
@@ -35,6 +35,8 @@ class profile::base::pkgs {
 
       if $::facts['os']['family'] == 'RedHat' {
         include ::epel
+
+        package {['mcollective-shell-agent','mcollective-shell-client']: ensure => present, }
       }
 
       ensure_packages(['wget','unzip','git'])
