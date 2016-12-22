@@ -36,7 +36,27 @@ class profile::base::pkgs {
       if $::facts['os']['family'] == 'RedHat' {
         include ::epel
 
-        package {['mcollective-shell-agent','mcollective-shell-client']: ensure => present, }
+
+        if $::facts['os']['release']['major'] + 0 >= 7 {
+
+          file {'/etc/yum.repos.d/misc.repo':
+            ensure => present,
+            mode   => '0644',
+            group  => root,
+            owner  => root,
+            source => 'puppet:///modules/profile/misc.repo',
+            notify => Exec['yum clean all'],
+          }
+
+          exec {'yum clean all':
+            cmd         => 'yum clean all',
+            refreshonly => true,
+          }
+
+          package {['mcollective-shell-agent','mcollective-shell-client']:
+            ensure => present,
+          }
+        }
       }
 
       ensure_packages(['wget','unzip','git'])
