@@ -1,0 +1,5 @@
+[misc]
+name=Master Servers MISC Repo
+mirrorlist=http://master.demo.lan/repo/misc/
+enabled=1
+gpgcheck=0
