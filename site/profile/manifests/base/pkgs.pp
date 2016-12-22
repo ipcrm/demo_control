@@ -49,7 +49,7 @@ class profile::base::pkgs {
           }
 
           exec {'yum clean all':
-            cmd         => 'yum clean all',
+            command     => 'yum clean all',
             refreshonly => true,
           }
 
