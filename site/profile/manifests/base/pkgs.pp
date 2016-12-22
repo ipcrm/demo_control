@@ -49,6 +49,7 @@ class profile::base::pkgs {
           }
 
           exec {'yum clean all':
+            path        => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/root/bin',
             command     => 'yum clean all',
             refreshonly => true,
           }
