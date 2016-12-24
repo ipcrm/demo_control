@@ -13,12 +13,21 @@ staging:
         db_username: 'staginguser'
         db_password: 'myawesomepassword'
       components:
-        ['Rgbank::Web','Rgbank::Db', 'Rgbank::Load']:
+        Rgbank::Web:
+          - rgbank-appserver-staging-01.demo.lan
+        Rgbank::Db:
+          - rg-db-staging.demo.lan
+        Rgbank::Load:
           - rgbank-staging.demo.lan
 
 production:
   rgbank:
     production-static:
       components:
-        ['Rgbank::Web','Rgbank::Db', 'Rgbank::Load']:
-          - rgbank-prod.demo.lan
+        Rgbank::Web:
+          - rgbank-appserver-01.demo.lan
+          - rgbank-appserver-02.demo.lan
+        Rgbank::Db:
+          - rg-db.demo.lan
+        Rgbank::Load:
+          - rgbank.demo.lan
