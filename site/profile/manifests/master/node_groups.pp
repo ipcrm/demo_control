@@ -57,11 +57,17 @@ class profile::master::node_groups {
 
   node_group { 'webserver_nginx':
     classes => { 'role::webserver_nginx' => {}, },
-    rule    => ['and', ['=', ['fact', 'role'], 'webserver_nginx']],
+    rule    => ['or',
+      ['=', ['fact', 'role'], 'webserver_nginx'],
+      ['=', ['fact', 'role'], 'rgbank']
+    ],
   }
 
   node_group { 'database_mysql':
-    rule    => ['and', ['=', ['fact', 'role'], 'database_mysql']],
+    rule    => ['or',
+      ['=', ['fact', 'role'], 'database_mysql'],
+      ['=', ['fact', 'role'], 'rgbank']
+    ],
     classes => {
       'role::database_mysql' => {},
     },
