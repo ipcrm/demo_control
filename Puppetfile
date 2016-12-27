@@ -59,8 +59,8 @@ mod 'tse-winntp',
   :ref => '854e3b517b96adeadeb90d557347cb32c7005a0e'
 
 mod 'rgbank',
-  :git => 'https://github.com/puppetlabs/puppetlabs-rgbank.git',
-  :ref => '1b545bc639d727e388da4af1217cc632ecaacc10'
+  :git => 'https://github.com/ipcrm/puppetlabs-rgbank.git',
+  :ref => 'master'
 
 mod 'sqlwebapp',
   :git => 'https://github.com/ipcrm/puppet-sqlwebapp.git',
