@@ -48,6 +48,9 @@ class profile::master::puppetserver {
             "/hiera/lookup?scope=%{::virtual}&key=%{key}",
             "/hiera/lookup?scope=%{::environment}&key=%{key}"
           ],
+          'confine_to_keys' => [
+            "rgbank.*"
+          ],
         }
       }
     }
