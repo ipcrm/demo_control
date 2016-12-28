@@ -13,7 +13,7 @@ class profile::master::puppetserver {
     firewall { '110 mcollective allow all':  dport  => '61613'; }
 
     package {'hiera-http':
-      ensure   => present,
+      ensure   => '1.4.0',
       provider => puppetserver_gem,
     } ->
 
@@ -49,7 +49,7 @@ class profile::master::puppetserver {
             "/hiera/lookup?scope=%{::environment}&key=%{key}"
           ],
           'confine_to_keys' => [
-            "rgbank.*"
+            "rgbank.*",
           ],
         }
       }
