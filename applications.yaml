@@ -26,7 +26,7 @@ production:
       components:
         Rgbank::Web:
           - rgbank-appserver-01.demo.lan
-          - rgbank-appserver-02.demo.lan
+          # - rgbank-appserver-02.demo.lan
         Rgbank::Db:
           - rg-db.demo.lan
         Rgbank::Load:
