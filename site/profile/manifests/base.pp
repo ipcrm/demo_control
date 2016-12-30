@@ -21,7 +21,7 @@ class profile::base(
   if $orch_agent == true { contain ::profile::base::orch_agent }
 
   class {'::puppet_agent':
-      package_version => '1.8.2-1',
+      package_version => '1.8.2',
   }
 
 }
