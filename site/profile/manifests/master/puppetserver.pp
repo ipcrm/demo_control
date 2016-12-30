@@ -16,44 +16,44 @@ class profile::master::puppetserver {
       ensure   => '1.4.0',
       provider => puppetserver_gem,
     }
-#
-#    class { 'hiera':
-#      datadir_manage      => false,
-#      datadir             => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
-#      hierarchy           => [
-#        'nodes/%{clientcert}',
-#        '%{environment}/%{role}',
-#        '%{environment}/common',
-#        '%{location}/%{role}',
-#        '%{location}/common',
-#        'role/%{role}',
-#        'common',
-#      ],
-#      eyaml           => true,
-#      eyaml_extension => 'yaml',
-#      merge_behavior  => 'deeper',
-#      backends        => ['eyaml','http'],
-#      backend_options     => {
-#        'http'            => {
-#          'host'          => 'jenkins.demo.lan',
-#          'port'          => '8080',
-#          'output'        => 'json',
-#          'use_auth'      => 'true',
-#          'auth_user'     => 'admin',
-#          'auth_pass'     => 'puppetlabs',
-#          'cache_timeout' => 10,
-#          'failure'       => 'graceful',
-#          'paths'         => [
-#            "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
-#            "/hiera/lookup?scope=%{::virtual}&key=%{key}",
-#            "/hiera/lookup?scope=%{::environment}&key=%{key}"
-#          ],
-#          'confine_to_keys' => [
-#            "rgbank.*",
-#          ],
-#        }
-#      }
-#    }
+
+    class { 'hiera':
+      datadir_manage      => false,
+      datadir             => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
+      hierarchy           => [
+        'nodes/%{clientcert}',
+        '%{environment}/%{role}',
+        '%{environment}/common',
+        '%{location}/%{role}',
+        '%{location}/common',
+        'role/%{role}',
+        'common',
+      ],
+      eyaml           => true,
+      eyaml_extension => 'yaml',
+      merge_behavior  => 'deeper',
+      backends        => ['eyaml','http'],
+      backend_options     => {
+        'http'            => {
+          'host'          => 'jenkins.demo.lan',
+          'port'          => '8080',
+          'output'        => 'json',
+          'use_auth'      => 'true',
+          'auth_user'     => 'admin',
+          'auth_pass'     => 'puppetlabs',
+          'cache_timeout' => 10,
+          'failure'       => 'graceful',
+          'paths'         => [
+            "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
+            "/hiera/lookup?scope=%{::virtual}&key=%{key}",
+            "/hiera/lookup?scope=%{::environment}&key=%{key}"
+          ],
+          'confine_to_keys' => [
+            "rgbank.*",
+          ],
+        }
+      }
+    }
 
     if defined(Service['pe-puppetserver']){
 
