@@ -12,11 +12,4 @@ class profile::base::orch_agent {
     value   => 'true',
   }
 
-  ini_setting { 'puppet agent pluginsync':
-    ensure  => present,
-    path    => $puppet_conf,
-    section => 'agent',
-    setting => 'pluginsync',
-    value   => 'false',
-  }
 }
