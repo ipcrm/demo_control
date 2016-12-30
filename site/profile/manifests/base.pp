@@ -20,8 +20,10 @@ class profile::base(
 
   if $orch_agent == true { contain ::profile::base::orch_agent }
 
-  class {'::puppet_agent':
-      package_version => '1.8.2',
+  if $::fqdn != $::puppet_master_server {
+    class {'::puppet_agent':
+        package_version => '1.8.2',
+    }
   }
 
 }
