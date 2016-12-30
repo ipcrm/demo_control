@@ -48,6 +48,7 @@ mod 'rtyler-jenkins',              '1.7.0'
 mod 'tse-to_resource',             '0.1.2'
 mod 'puppetlabs-websphere_application_server', '1.0.0'
 mod 'puppetlabs-ibm_installation_manager', '0.2.4'
+mod 'puppetlabs-puppet_agent',     '1.3.1'
 
 # Modules from Repo's
 mod 'demo_cis',
