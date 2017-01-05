@@ -1,14 +1,6 @@
 
 node {
 
-  if (env.BUILD_BRANCH == 'unset') {
-   throw 'BUILD_BRANCH param not set!'
-  }
-
-  if (env.TAG == 'unset') {
-   throw 'TAG param not set!'
-  }
-
   dir('util') {
     git 'git@github.com:ipcrm/pfparser.git'
   }
@@ -23,7 +15,7 @@ node {
             source ~/.bash_profile
             rbenv global 2.3.1
             eval "$(rbenv init -)"
-            ruby ../util/pfparser.rb -r -f Puppetfile -m 'ntp' -p ':ref' -d $TAG
+            ruby ../util/pfparser.rb -r -f Puppetfile -m $MODULE -p $PARAM -d $TAG
           ''')
         }
       }
@@ -58,7 +50,7 @@ node {
               source ~/.bash_profile
               rbenv global 2.3.1
               eval "$(rbenv init -)"
-              ruby ../util/pfparser.rb -r -f Puppetfile -m 'ntp' -p ':ref' -d $TAG
+              ruby ../util/pfparser.rb -r -f Puppetfile -m $MODULE -p $PARAM -d $TAG
             '''
           }
         }
