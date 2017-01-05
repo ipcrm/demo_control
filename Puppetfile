@@ -86,6 +86,6 @@ mod 'team_x',
   :install_path => 'hieradata'
 
 mod 'ntp',
-  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
+  :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
   :ref => '0.0.13',
   :install_path => ''
