@@ -81,11 +81,11 @@ mod 'profile_websphere',
 
 mod 'team_x',
   :git => 'git@github.com:ipcrm/teamx_hieradata.git',
-  :branch => ':control_branch',
+  :branch => :control_branch,
   :default_branch => 'master',
   :install_path => 'hieradata'
 
 mod 'ntp',
   :git => 'git@github.com:ipcrm/teamx_hieradata.git',
-  :ref => 'master',
+  :ref => '0.0.13',
   :install_path => ''
