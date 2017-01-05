@@ -84,3 +84,8 @@ mod 'team_x',
   :branch => ':control_branch',
   :default_branch => 'master',
   :install_path => 'hieradata'
+
+mod 'ntp',
+  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
+  :ref => 'master',
+  :install_path => ''
