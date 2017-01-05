@@ -87,5 +87,5 @@ mod 'team_x',
 
 mod 'ntp',
   :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
-  :ref => '0.0.13',
+  :ref => '0.0.14',
   :install_path => ''
