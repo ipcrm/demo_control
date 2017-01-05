@@ -1,4 +1,6 @@
 forge "http://forge.puppetlabs.com"
+
+  :install_path => ''
 mod 'puppetlabs/inifile',    '1.6.0'
 mod 'puppetlabs/stdlib',    '4.12.0'
 mod 'puppetlabs/concat',    '2.2.0'
@@ -87,5 +89,4 @@ mod 'team_x',
 
 mod 'ntp',
   :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
-  :ref => '0.0.7',
-  :install_path => ''
+  :ref => '0.0.8'
