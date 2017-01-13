@@ -1,6 +1,5 @@
 # Disable filebucket by default for all File resources:
 File { backup => false }
-notify{$certname: }
 site {
 # Applications managed by App Orchestrator are defined in the site block.
 
