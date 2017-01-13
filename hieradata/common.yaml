@@ -1,6 +1,7 @@
 ---
 # Turn on AO for all nodes(by default)
 profile::base::orch_agent: true
+puppet_enterprise::master::code_manager::certname: test
 
 #MOTD Message
 profile::base::motd::message: |
