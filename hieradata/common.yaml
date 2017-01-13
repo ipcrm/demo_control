@@ -46,8 +46,9 @@ puppet_enterprise::master::puppetserver::jruby_max_active_instances: 4
 
 # Code Manager Custom SSL Cert
 puppet_enterprise::profile::master::file_sync_enabled: true
-profile::master::code_manager::certname: test_web_cert
-
+profile::master::code_manager::certname: masterdemokey
+puppet_enterprise::profile::console::browser_ssl_cert: /opt/puppetlabs/server/data/console-services/certs/masterdemokey.crt
+puppet_enterprise::profile::console::browser_ssl_private_key: /opt/puppetlabs/server/data/console-services/certs/masterdemolan.key
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
