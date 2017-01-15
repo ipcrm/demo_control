@@ -4,6 +4,5 @@ class profile::master {
   contain ::profile::master::node_groups
   contain ::profile::master::fileserver
   contain ::profile::master::repos
-  contain ::profile::master::code_manager
 
 }
