@@ -50,6 +50,7 @@ puppet_enterprise::master::code_manager::localcacert: /etc/puppetlabs/puppet/ssl
 profile::master::code_manager::certname: masterdemokey
 puppet_enterprise::profile::console::browser_ssl_cert: /opt/puppetlabs/server/data/console-services/certs/masterdemokey.crt
 puppet_enterprise::profile::console::browser_ssl_private_key: /opt/puppetlabs/server/data/console-services/certs/masterdemolan.key
+puppet_enterprise::profile::controller::manage_puppet_code: false
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
