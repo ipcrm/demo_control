@@ -37,20 +37,12 @@ services:
 profile::webserver::apache::default_vhost: true
 
 #Enable code manager
-puppet_enterprise::profile::master::code_manager_auto_configure: false
+puppet_enterprise::profile::master::code_manager_auto_configure: true
 puppet_enterprise::master::code_manager::authenticate_webhook: true
 puppet_enterprise::profile::console::classifier_synchronization_period: 0
 puppet_enterprise::profile::master::app_management: true
 puppet_enterprise::profile::orchestrator::use_application_services: true
 puppet_enterprise::master::puppetserver::jruby_max_active_instances: 4
-
-# Code Manager Custom SSL Cert
-puppet_enterprise::profile::master::file_sync_enabled: true
-puppet_enterprise::master::code_manager::localcacert: /etc/puppetlabs/puppet/ssl/certs/rootCA.pem
-profile::master::code_manager::certname: masterdemokey
-puppet_enterprise::profile::console::browser_ssl_cert: /opt/puppetlabs/server/data/console-services/certs/masterdemokey.crt
-puppet_enterprise::profile::console::browser_ssl_private_key: /opt/puppetlabs/server/data/console-services/certs/masterdemolan.key
-puppet_enterprise::profile::controller::manage_puppet_code: false
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
