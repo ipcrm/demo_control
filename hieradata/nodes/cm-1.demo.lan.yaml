@@ -1,1 +1,2 @@
 profile::base::orch_agent: false
+puppet_enterprise::profile::master::code_manager_auto_configure: true
