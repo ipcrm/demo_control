@@ -3,9 +3,11 @@ dev:
   rgbank:
     dev-0:
       components:
+        Rgbank::Db:
+          - rgbank-dev-db.demo.lan
         Rgbank::Web:
           - rgbank-dev-web.demo.lan
-        ['Rgbank::Db', 'Rgbank::Load']:
+        Rgbank::Load:
           - rgbank-dev.demo.lan
 
 staging:
