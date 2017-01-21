@@ -51,6 +51,7 @@ class profile::master::puppetserver {
           ],
           'confine_to_keys' => [
             "rgbank.*",
+            "flask_puppet.*",
           ],
         }
       }

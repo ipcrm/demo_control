@@ -1,6 +1,6 @@
-class profile::apps::flask_puppet (
-  $dist_file,
-){
+class profile::apps::flask_puppet {
+
+  $dist_file = hiera('flask_pupppet_dist_file')
 
   package{'python-pip':
     ensure  => present,
