@@ -46,6 +46,7 @@ class profile::master::puppetserver {
           'paths'         => [
             "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
             "/hiera/lookup?scope=%{::virtual}&key=%{key}",
+            "/hiera/lookup?scope=%{::appenv}&key=%{key}",
             "/hiera/lookup?scope=%{::environment}&key=%{key}"
           ],
           'confine_to_keys' => [
