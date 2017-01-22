@@ -47,6 +47,7 @@ mod 'tse-to_resource',    '0.1.2'
 mod 'puppetlabs-websphere_application_server',    '1.0.0'
 mod 'puppetlabs-ibm_installation_manager',    '0.2.4'
 mod 'puppetlabs-puppet_agent',    '1.3.1'
+mod 'lwf/remote_file', '1.1.3'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
