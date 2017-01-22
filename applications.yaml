@@ -35,7 +35,7 @@ production:
           - rg-db.demo.lan
         Rgbank::Load:
           - rgbank.demo.lan
-  flask_puppet:
+  flask_app:
     prod:
       components:
         Flask_app::Webhead:
