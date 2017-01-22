@@ -3,6 +3,20 @@ File { backup => false }
 site {
 # Applications managed by App Orchestrator are defined in the site block.
 
+  flask_app {'prod':
+    app_name => 'webui',
+    nodes    => {
+      Node['rgbank-2.demo.lan' => [Flask_app::WebHead['webui_prod_webhead'],
+    },
+  }
+
+  flask_app {'dev':
+    app_name => 'webui',
+    nodes    => {
+      Node['rgbank-1.demo.lan' => [Flask_app::WebHead['webui_dev_webhead'],
+    },
+  }
+
 #  rgbank { 'getting-started':
 #    listen_port => 8010,
 #    nodes       =>
@@ -43,7 +57,7 @@ site {
       # types, an appropriately transformed version of the $params variable will be
       # used. The resolve_resources() method comes from the tse/to_resource module.
       Resource[$type] { $title:
-        * => $parsed_parameters.resolve_resources
+        * => $parsed_parameters.resolve_resources,
       }
     }
   }

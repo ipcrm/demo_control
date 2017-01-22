@@ -35,16 +35,3 @@ production:
           - rg-db.demo.lan
         Rgbank::Load:
           - rgbank.demo.lan
-  flask_app:
-    prod:
-      parameters:
-        app_name: 'webui'
-      components:
-        Flask_app::Webhead:
-          - flask-2.demo.lan
-    dev:
-      parameters:
-        app_name: 'webui'
-      components:
-        Flask_app::Webhead:
-          - flask-1.demo.lan
