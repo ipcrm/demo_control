@@ -1,19 +1,18 @@
 # Disable filebucket by default for all File resources:
 File { backup => false }
 site {
-# Applications managed by App Orchestrator are defined in the site block.
 
   flask_app {'prod':
     app_name => 'webui',
     nodes    => {
-      Node['rgbank-2.demo.lan'] => [Flask_app::Webhead['webui_prod_webhead'],
+      Node['rgbank-2.demo.lan'] => [Flask_app::Webhead['webui_prod_webhead']],
     },
   }
 
   flask_app {'dev':
     app_name => 'webui',
     nodes    => {
-      Node['rgbank-1.demo.lan'] => [Flask_app::Webhead['webui_dev_webhead'],
+      Node['rgbank-1.demo.lan'] => [Flask_app::Webhead['webui_dev_webhead']],
     },
   }
 
