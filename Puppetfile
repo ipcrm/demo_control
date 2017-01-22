@@ -79,6 +79,9 @@ mod 'elk_report',
 mod 'profile_websphere',
   :git => 'https://github.com/ipcrm/pov-usecase-websphere.git'
 
+mod 'flask_app',
+  :git => 'https://github.com/ipcrm/ipcrm-flask_app.git'
+
 mod 'team_x',
   :git => 'git@github.com:ipcrm/teamx_hieradata.git',
   :branch => :control_branch,

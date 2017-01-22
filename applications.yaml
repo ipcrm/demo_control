@@ -35,3 +35,12 @@ production:
           - rg-db.demo.lan
         Rgbank::Load:
           - rgbank.demo.lan
+  flask_puppet:
+    prod:
+      components:
+        Flask_app::Webhead:
+          - flask_2.demo.lan
+    dev:
+      components:
+        Flask_app::Webhead:
+          - flask_1.demo.lan
