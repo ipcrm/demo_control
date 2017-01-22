@@ -37,10 +37,14 @@ production:
           - rgbank.demo.lan
   flask_app:
     prod:
+      parameters:
+        app_name: 'webui'
       components:
         Flask_app::Webhead:
           - flask_2.demo.lan
     dev:
+      parameters:
+        app_name: 'webui'
       components:
         Flask_app::Webhead:
           - flask_1.demo.lan
