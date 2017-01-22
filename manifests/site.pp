@@ -5,14 +5,14 @@ site {
   flask_app {'prod':
     app_name => 'webui',
     nodes    => {
-      Node['rgbank-2.demo.lan'] => [Flask_app::Webhead['prod']],
+      Node['flask-2.demo.lan'] => [Flask_app::Webhead['prod']],
     },
   }
 
   flask_app {'dev':
     app_name => 'webui',
     nodes    => {
-      Node['rgbank-1.demo.lan'] => [Flask_app::Webhead['dev']],
+      Node['flask-1.demo.lan'] => [Flask_app::Webhead['dev']],
     },
   }
 
