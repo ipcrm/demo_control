@@ -63,6 +63,13 @@ class profile::master::node_groups {
     ],
   }
 
+  node_group { 'webserver_apache':
+    classes => { 'role::webserver_apache' => {}, },
+    rule    => ['or',
+      ['=', ['fact', 'role'], 'flask_puppet']
+    ],
+  }
+
   node_group { 'database_mysql':
     rule    => ['or',
       ['=', ['fact', 'role'], 'database_mysql'],
