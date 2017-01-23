@@ -29,11 +29,13 @@ class profile::master::puppetserver {
         'role/%{role}',
         'common',
       ],
-      eyaml           => true,
-      eyaml_extension => 'yaml',
-      merge_behavior  => 'deeper',
-      backends        => ['eyaml','http'],
-      backend_options     => {
+      eyaml                => true,
+      eyaml_extension      => 'yaml',
+      eyaml_gpg            => true,
+      eyaml_gpg_recipients => 'mattc@puppet.com',
+      merge_behavior       => 'deeper',
+      backends             => ['eyaml','http'],
+      backend_options      => {
         'http'            => {
           'host'          => 'jenkins.demo.lan',
           'port'          => '8080',
