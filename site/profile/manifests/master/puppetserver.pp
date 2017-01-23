@@ -32,7 +32,7 @@ class profile::master::puppetserver {
       eyaml                => true,
       eyaml_extension      => 'yaml',
       eyaml_gpg            => true,
-      eyaml_gpg_recipients => 'mattc@puppet.com',
+      eyaml_gpg_recipients => 'matthew.cadorette@puppetlabs.com',
       merge_behavior       => 'deeper',
       backends             => ['eyaml','http'],
       backend_options      => {
