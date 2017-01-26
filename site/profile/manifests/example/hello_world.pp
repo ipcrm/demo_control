@@ -36,13 +36,6 @@ class profile::example::hello_world (
 
   $war_files.each |$war_file| {
 
-    File {
-      require => [
-        Tomcat::Instance['tomcat-first'],
-        Tomcat::Instance['tomcat-second'],
-      ],
-    }
-
     file {"/opt/tomcat/tomcat-first/webapps/${war_file}":
       ensure => present,
       owner  => tomcat,
