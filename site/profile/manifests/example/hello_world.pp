@@ -16,10 +16,11 @@ class profile::example::hello_world (
   }
 
   class { '::tomcat':
-    install_from  => 'archive',
-    version       => '8.0.15',
-    catalina_home => '/opt/tomcat',
-    java_opts     => ['-server','-Djava.net.preferIPv4Stack=true','-Djava.net.preferIPv4Addresses'],
+    install_from    => 'archive',
+    version         => '8.0.15',
+    catalina_home   => '/opt/tomcat',
+    java_opts       => ['-server','-Djava.net.preferIPv4Stack=true','-Djava.net.preferIPv4Addresses'],
+    manage_firewall => $manage_firewall,
   }
 
   $war_files.each |$war_file| {
