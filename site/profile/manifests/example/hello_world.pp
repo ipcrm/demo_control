@@ -38,11 +38,13 @@ class profile::example::hello_world (
 
     tomcat::war { "tomcat/first ${war_file}":
       catalina_base => '/opt/tomcat/first',
+      war_name      => $war_file,
       war_source    => "${war_source}/${war_file}",
     }
 
     tomcat::war { "tomcat/second ${war_file}":
       catalina_base => '/opt/tomcat/second',
+      war_name      => $war_file,
       war_source    => "${war_source}/${war_file}",
     }
 
