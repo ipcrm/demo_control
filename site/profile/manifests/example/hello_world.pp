@@ -1,7 +1,6 @@
 class profile::example::hello_world (
   $war_files       = ['helloworld.war'],
   $war_source      = 'http://master.demo.lan/artifacts',
-  $tomcat_source   = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz',
   $manage_firewall = true,
   $java_opts       = ['-server',
                       '-Djava.net.preferIPv4Stack=true',
