@@ -28,10 +28,34 @@ class profile::example::hello_world (
     manage_firewall => $manage_firewall,
   }
 
+  tomcat::instance { 'instance2':
+    install_from        => 'archive',
+    version             => '8.0.18',
+    catalina_home       => '/opt/tomcat2',
+    java_opts           => [
+      '-server',
+      '-Djava.net.preferIPv4Stack=true',
+      '-Djava.net.preferIPv4Addresses',
+      '-Djava.security.egd=file:/dev/./urandom',
+    ],
+    server_control_port => 8006,
+    http_port           => 8081,
+    ajp_port            => 8109,
+    manage_firewall     => $manage_firewall,
+  }
+
   $war_files.each |$war_file| {
 
 
     file {"/opt/tomcat/webapps/${war_file}":
+      ensure => present,
+      owner  => tomcat,
+      group  => tomcat,
+      mode   => '0755',
+      source => "${war_source}/${war_file}",
+    }
+
+    file {"/opt/tomcat2/webapps/${war_file}":
       ensure => present,
       owner  => tomcat,
       group  => tomcat,
