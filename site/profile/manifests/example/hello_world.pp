@@ -36,7 +36,7 @@ class profile::example::hello_world (
 
   $war_files.each |$war_file| {
 
-    file {"/opt/tomcat/tomcat-first/webapps/${war_file}":
+    file {"/var/lib/tomcats/tomcat-first/webapps/${war_file}":
       ensure => present,
       owner  => tomcat,
       group  => tomcat,
@@ -44,7 +44,7 @@ class profile::example::hello_world (
       source => "${war_source}/${war_file}",
     }
 
-    file {"/opt/tomcat/tomcat-second/webapps/${war_file}":
+    file {"/var/lib/tomcats/tomcat-second/webapps/${war_file}":
       ensure => present,
       owner  => tomcat,
       group  => tomcat,
