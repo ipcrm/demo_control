@@ -31,9 +31,15 @@ class profile::example::hello_world (
     require       => Tomcat::Install['/opt/tomcat'],
   }
 
+  tomcat::config::server { 'tomcat-first':
+    catalina_base => '/opt/tomcat/first',
+    address       => '0.0.0.0',
+  }
+
   tomcat::config::server { 'tomcat-second':
     catalina_base => '/opt/tomcat/second',
     port          => '8006',
+    address       => '0.0.0.0',
   }
 
   tomcat::config::server::connector { 'tomcat-second':
