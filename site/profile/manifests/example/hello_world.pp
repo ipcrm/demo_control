@@ -22,6 +22,15 @@ class profile::example::hello_world (
     catalina_home   => '/opt/tomcat',
     java_opts       => $java_opts,
     manage_firewall => $manage_firewall,
+    tomcat_roles    => {
+      'admins' => {} ,
+    },
+    tomcat_users    => {
+      'admin' => {
+        password => 'admin',
+        roles    => [ 'admins','admin-gui' ],
+      },
+    },
   }
 
   tomcat::instance { 'instance2':
@@ -32,6 +41,15 @@ class profile::example::hello_world (
     http_port           => 8081,
     ajp_port            => 8109,
     manage_firewall     => $manage_firewall,
+    tomcat_roles        => {
+      'admins' => {} ,
+    },
+    tomcat_users        => {
+      'admin' => {
+        password => 'admin',
+        roles    => [ 'admins','admin-gui' ],
+      },
+    },
   }
 
   $war_files.each |$war_file| {
