@@ -1,7 +1,7 @@
 class profile::example::hello_world (
   $war_files = ['helloworld.war'],
   $war_source = 'http://master.demo.lan/artifacts',
-  $tomcat_source = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.tar.gz'
+  $tomcat_source = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz',
 ){
 
   package {'haveged':
@@ -50,9 +50,10 @@ class profile::example::hello_world (
   $war_files.each |$war_file| {
 
     remote_file { $war_file:
-      ensure => latest,
-      path   => "/var/tmp/${war_file}",
-      source => "${war_source}/${war_file}",
+      ensure  => latest,
+      path    => "/var/tmp/${war_file}",
+      source  => "${war_source}/${war_file}",
+      require => Tomcat::Instance['default'],
     }
 
     file { $war_file:
