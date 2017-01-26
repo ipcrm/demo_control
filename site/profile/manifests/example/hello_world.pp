@@ -45,6 +45,15 @@ class profile::example::hello_world (
     },
   }
 
+  tomcat::config::server::connector { 'tomcat-second-ajp':
+    catalina_base         => '/opt/tomcat/second',
+    port                  => '8109',
+    protocol              => 'AJP/1.3',
+    additional_attributes => {
+      'redirectPort' => '8543',
+    },
+  }
+
   $war_files.each |$war_file| {
 
     tomcat::war { "tomcat/first ${war_file}":
