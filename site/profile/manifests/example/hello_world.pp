@@ -17,39 +17,23 @@ class profile::example::hello_world (
   }
 
   class { '::tomcat':
-    install_from    => 'archive',
-    version         => '8.0.15',
-    catalina_home   => '/opt/tomcat',
-    java_opts       => $java_opts,
-    manage_firewall => $manage_firewall,
-    tomcat_roles    => {
-      'admins' => {} ,
-    },
-    tomcat_users    => {
-      'admin' => {
-        password => 'admin',
-        roles    => [ 'admins','admin-gui' ],
-      },
-    },
+    install_from         => 'archive',
+    version              => '8.0.15',
+    catalina_home        => '/opt/tomcat',
+    java_opts            => $java_opts,
+    manage_firewall      => $manage_firewall,
+    create_default_admin => true,
   }
 
   tomcat::instance { 'instance2':
-    version             => '8.0.18',
-    catalina_home       => '/opt/tomcat2',
-    java_opts           => $java_opts,
-    server_control_port => 8006,
-    http_port           => 8081,
-    ajp_port            => 8109,
-    manage_firewall     => $manage_firewall,
-    tomcat_roles        => {
-      'admins' => {} ,
-    },
-    tomcat_users        => {
-      'admin' => {
-        password => 'admin',
-        roles    => [ 'admins','admin-gui' ],
-      },
-    },
+    version              => '8.0.18',
+    catalina_home        => '/opt/tomcat2',
+    java_opts            => $java_opts,
+    server_control_port  => 8006,
+    http_port            => 8081,
+    ajp_port             => 8109,
+    manage_firewall      => $manage_firewall,
+    create_default_admin => true,
   }
 
   $war_files.each |$war_file| {
