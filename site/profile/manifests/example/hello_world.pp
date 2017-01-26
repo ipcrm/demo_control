@@ -53,7 +53,7 @@ class profile::example::hello_world (
       ensure  => latest,
       path    => "/var/tmp/${war_file}",
       source  => "${war_source}/${war_file}",
-      require => Tomcat::Instance['default'],
+      require => Tomcat::Install['/opt/tomcat'],
     }
 
     file { $war_file:
