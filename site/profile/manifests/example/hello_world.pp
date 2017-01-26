@@ -1,4 +1,4 @@
-class profile::example::tomcat (
+class profile::example::hello_world (
   $war_files = ['helloworld.war'],
   $war_source = 'http://master.demo.lan/artifacts',
   $tomcat_source = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.tar.gz'
