@@ -27,7 +27,7 @@ class profile::example::hello_world (
     manage_firewall     => true,
   }
 
-  tomcat::instance { 'tomcat-first':
+  tomcat::instance { 'tomcat-second':
     server_control_port => 8006,
     ajp_port            => 8109,
     http_port           => 8081,
