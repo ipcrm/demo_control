@@ -15,79 +15,48 @@ class profile::example::hello_world (
     java_se => 'jdk',
   }
 
-  tomcat::install { '/opt/tomcat':
-      source_url => $tomcat_source,
+  class { '::tomcat':
+    install_from  => 'archive',
+    version       => '8.0.15',
+    catalina_home => '/opt/tomcat',
   }
 
   tomcat::instance { 'tomcat-first':
-    catalina_home => '/opt/tomcat',
-    catalina_base => '/opt/tomcat/first',
-    require       => Tomcat::Install['/opt/tomcat'],
+    server_control_port => 8005,
+    http_port           => 8080,
+    manage_firewall     => true,
   }
 
-  tomcat::instance { 'tomcat-second':
-    catalina_home => '/opt/tomcat',
-    catalina_base => '/opt/tomcat/second',
-    require       => Tomcat::Install['/opt/tomcat'],
-  }
-
-  tomcat::config::server { 'tomcat-first':
-    catalina_base => '/opt/tomcat/first',
-    address       => '0.0.0.0',
-  }
-
-  tomcat::config::server { 'tomcat-second':
-    catalina_base => '/opt/tomcat/second',
-    port          => '8006',
-    address       => '0.0.0.0',
-  }
-
-  tomcat::config::server::connector { 'tomcat-second':
-    catalina_base         => '/opt/tomcat/second',
-    port                  => '8081',
-    protocol              => 'HTTP/1.1',
-    additional_attributes => {
-      'redirectPort' => '8443',
-    },
-  }
-
-  tomcat::config::server::connector { 'tomcat-second-ajp':
-    catalina_base         => '/opt/tomcat/second',
-    port                  => '8109',
-    protocol              => 'AJP/1.3',
-    additional_attributes => {
-      'redirectPort' => '8543',
-    },
+  tomcat::instance { 'tomcat-first':
+    server_control_port => 8006,
+    ajp_port            => 8109,
+    http_port           => 8081,
+    manage_firewall     => true,
   }
 
   $war_files.each |$war_file| {
 
-    tomcat::war { "tomcat/first ${war_file}":
-      catalina_base => '/opt/tomcat/first',
-      war_name      => $war_file,
-      war_source    => "${war_source}/${war_file}",
+    File {
+      require => [
+        Tomcat::Instance['tomcat-first'],
+        Tomcat::Instance['tomcat-second'],
+      ],
     }
 
-    tomcat::war { "tomcat/second ${war_file}":
-      catalina_base => '/opt/tomcat/second',
-      war_name      => $war_file,
-      war_source    => "${war_source}/${war_file}",
+    file {"/opt/tomcat/tomcat-first/webapps/${war_file}":
+      ensure => present,
+      owner  => tomcat,
+      group  => tomcat,
+      mode   => '0755',
+      source => "${war_source}/${war_file}",
     }
 
-  }
-
-  if $manage_firewall == true {
-
-    firewall { '8080 allow tomcat access':
-      dport  => [8080],
-      proto  => tcp,
-      action => accept,
-    }
-
-    firewall { '9090 allow tomcat access':
-      dport  => [9090],
-      proto  => tcp,
-      action => accept,
+    file {"/opt/tomcat/tomcat-second/webapps/${war_file}":
+      ensure => present,
+      owner  => tomcat,
+      group  => tomcat,
+      mode   => '0755',
+      source => "${war_source}/${war_file}",
     }
 
   }
