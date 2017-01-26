@@ -52,8 +52,14 @@ class profile::example::hello_world (
 
   if $manage_firewall == true {
 
-    firewall { 'allow tomcat access':
-      dport  => [8080,9090],
+    firewall { '8080 allow tomcat access':
+      dport  => [8080],
+      proto  => tcp,
+      action => accept,
+    }
+
+    firewall { '9090 allow tomcat access':
+      dport  => [9090],
       proto  => tcp,
       action => accept,
     }
