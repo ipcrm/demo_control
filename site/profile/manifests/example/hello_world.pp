@@ -16,14 +16,14 @@ class profile::example::hello_world (
     java_se => 'jdk',
   }
 
-#  class { '::tomcat':
-#    install_from         => 'archive',
-#    version              => '8.0.15',
-#    catalina_home        => '/opt/tomcat',
-#    java_opts            => $java_opts,
-#    manage_firewall      => $manage_firewall,
-#    create_default_admin => true,
-#  }
+  class { '::tomcat':
+    install_from         => 'archive',
+    version              => '8.0.15',
+    catalina_home        => '/opt/tomcat',
+    java_opts            => $java_opts,
+    manage_firewall      => $manage_firewall,
+    create_default_admin => true,
+  }
 
   tomcat::instance { 'instance2':
     version              => '8.0.18',
