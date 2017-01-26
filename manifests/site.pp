@@ -16,14 +16,24 @@ site {
     },
   }
 
+#  cloudshop { 'solo':
+#    dbinstance                                  => 'MYINSTANCE',
+#    dbuser                                      => 'CloudShop',
+#    dbpassword                                  => 'Azure$123',
+#    dbname                                      => 'AdventureWorks2012',
+#    nodes                                       => {
+#      Node['cloudshop-solo.demo.lan'] => [Cloudshop::App['solo'], Cloudshop::Db['solo']],
+#    },
+#  }
+
 #  cloudshop { 'split':
 #    dbinstance    => 'MYINSTANCE',
 #    dbuser        => 'CloudShop',
 #    dbpassword    => 'Azure$123',
 #    dbname        => 'AdventureWorks2012',
 #    nodes         => {
-#      Node['example7.demo.lan'] => Cloudshop::App['split'],
-#      Node['example8.demo.lan'] => Cloudshop::Db['split'],
+#      Node['cloudshop-iis.demo.lan'] => Cloudshop::App['split'],
+#      Node['cloudshop-db.demo.lan'] => Cloudshop::Db['split'],
 #    },
 #  }
 
