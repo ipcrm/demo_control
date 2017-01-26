@@ -19,6 +19,7 @@ class profile::example::hello_world (
     install_from  => 'archive',
     version       => '8.0.15',
     catalina_home => '/opt/tomcat',
+    java_opts     => '-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses',
   }
 
   tomcat::instance { 'tomcat-first':
