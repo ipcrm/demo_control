@@ -17,17 +17,19 @@ class profile::example::hello_world (
 
   tomcat::install { '/opt/tomcat':
       source_url => $tomcat_source,
-  } ->
+  }
 
   tomcat::instance { 'tomcat-first':
     catalina_home => '/opt/tomcat',
     catalina_base => '/opt/tomcat/first',
-  } ->
+    require       => Tomcat::Install['/opt/tomcat'],
+  }
 
   tomcat::instance { 'tomcat-second':
     catalina_home => '/opt/tomcat',
     catalina_base => '/opt/tomcat/second',
-  } ->
+    require       => Tomcat::Install['/opt/tomcat'],
+  }
 
   tomcat::config::server { 'tomcat-second':
     catalina_base => '/opt/tomcat/second',
