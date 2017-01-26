@@ -18,19 +18,19 @@ class profile::example::hello_world (
 
   tomcat::install { '/opt/tomcat':
       source_url => $tomcat_source,
-  }
+  } ->
 
   tomcat::instance { 'default':
       catalina_home  => '/opt/tomcat',
       manage_service => false,
       java_home      => '/usr/java/latest/jre',
-  }
+  } ->
 
   tomcat::config::server { 'default':
       catalina_base => '/opt/tomcat',
       address       => '0.0.0.0',
       port          => $listen_port,
-  }
+  } ->
 
   tomcat::service {'default':
     catalina_home  => '/opt/tomcat',
@@ -38,7 +38,7 @@ class profile::example::hello_world (
     service_name   => 'tomcat-default',
     service_enable => true,
     java_home      => '/usr/java/latest/jre',
-  }
+  } ->
 
   tomcat::config::server::host {'localhost':
     catalina_base         => '/opt/tomcat',
