@@ -22,12 +22,12 @@ class profile::example::hello_world (
   tomcat::instance { 'tomcat-first':
     catalina_home => '/opt/tomcat',
     catalina_base => '/opt/tomcat/first',
-  }
+  } ->
 
   tomcat::instance { 'tomcat-second':
     catalina_home => '/opt/tomcat',
     catalina_base => '/opt/tomcat/second',
-  }
+  } ->
 
   tomcat::config::server { 'tomcat-second':
     catalina_base => '/opt/tomcat/second',
@@ -36,12 +36,12 @@ class profile::example::hello_world (
 
   $war_files.each |$war_file| {
 
-    tomcat::war { $war_file:
+    tomcat::war { "tomcat/first ${war_file}":
       catalina_base => '/opt/tomcat/first',
       war_source    => "${war_source}/${war_file}",
     }
 
-    tomcat::war { $war_file:
+    tomcat::war { "tomcat/second ${war_file}":
       catalina_base => '/opt/tomcat/second',
       war_source    => "${war_source}/${war_file}",
     }
