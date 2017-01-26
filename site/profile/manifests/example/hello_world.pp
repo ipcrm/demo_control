@@ -52,7 +52,7 @@ class profile::example::hello_world (
     remote_file { $war_file:
       ensure => latest,
       path   => "/var/tmp/${war_file}",
-      source => "http://${war_source}/${war_file}",
+      source => "${war_source}/${war_file}",
     }
 
     file { $war_file:
