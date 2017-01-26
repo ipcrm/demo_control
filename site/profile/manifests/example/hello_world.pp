@@ -52,20 +52,9 @@ class profile::example::hello_world (
 
   $war_files.each |$war_file| {
 
-    remote_file { $war_file:
-      ensure  => latest,
-      path    => "/var/tmp/${war_file}",
-      source  => "${war_source}/${war_file}",
-      require => Tomcat::Install['/opt/tomcat'],
-    }
-
-    file { $war_file:
-      ensure  => present,
-      path    => "/opt/tomcat/webapps/${war_file}",
-      source  => "/var/tmp/${war_file}",
-      owner   => 'tomcat',
-      group   => 'tomcat',
-      require => Remote_file[$war_file],
+    tomcat::war { $war_file:
+      catalina_base => '/opt/tomcat',
+      war_source    => "${war_source}/${war_file}",
     }
 
   }
