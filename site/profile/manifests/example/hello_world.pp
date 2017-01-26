@@ -33,7 +33,16 @@ class profile::example::hello_world (
 
   tomcat::config::server { 'tomcat-second':
     catalina_base => '/opt/tomcat/second',
-    port          => '9090',
+    port          => '8006',
+  }
+
+  tomcat::config::server::connector { 'tomcat-second':
+    catalina_base         => '/opt/tomcat/second',
+    port                  => '8081',
+    protocol              => 'HTTP/1.1',
+    additional_attributes => {
+      'redirectPort' => '8443',
+    },
   }
 
   $war_files.each |$war_file| {
