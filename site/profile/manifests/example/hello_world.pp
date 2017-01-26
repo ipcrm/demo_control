@@ -2,7 +2,6 @@ class profile::example::hello_world (
   $war_files       = ['helloworld.war'],
   $war_source      = 'http://master.demo.lan/artifacts',
   $tomcat_source   = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz',
-  $listen_port     = '8080',
   $manage_firewall = true
 ){
 
@@ -20,40 +19,30 @@ class profile::example::hello_world (
       source_url => $tomcat_source,
   } ->
 
-  tomcat::instance { 'default':
-      catalina_home  => '/opt/tomcat',
-      manage_service => false,
-      java_home      => '/usr/java/latest/jre',
-  } ->
+  tomcat::instance { 'tomcat-first':
+    catalina_home => '/opt/tomcat',
+    catalina_base => '/opt/tomcat/first',
+  }
 
-  tomcat::config::server { 'default':
-      catalina_base => '/opt/tomcat',
-      address       => '0.0.0.0',
-      port          => $listen_port,
-  } ->
+  tomcat::instance { 'tomcat-second':
+    catalina_home => '/opt/tomcat',
+    catalina_base => '/opt/tomcat/second',
+  }
 
-  tomcat::service {'default':
-    catalina_home  => '/opt/tomcat',
-    catalina_base  => '/opt/tomcat',
-    service_name   => 'tomcat-default',
-    service_enable => true,
-    java_home      => '/usr/java/latest/jre',
-  } ->
-
-  tomcat::config::server::host {'localhost':
-    catalina_base         => '/opt/tomcat',
-    additional_attributes => {
-      # lint:ignore:quoted_booleans
-      'unpackWARs' => 'true',
-      # lint:endignore
-    },
-    app_base              => 'webapps',
+  tomcat::config::server { 'tomcat-second':
+    catalina_base => '/opt/tomcat/second',
+    port          => '9090',
   }
 
   $war_files.each |$war_file| {
 
     tomcat::war { $war_file:
-      catalina_base => '/opt/tomcat',
+      catalina_base => '/opt/tomcat/first',
+      war_source    => "${war_source}/${war_file}",
+    }
+
+    tomcat::war { $war_file:
+      catalina_base => '/opt/tomcat/second',
       war_source    => "${war_source}/${war_file}",
     }
 
@@ -61,8 +50,8 @@ class profile::example::hello_world (
 
   if $manage_firewall == true {
 
-    firewall { "${listen_port} allow tomcat access":
-      dport  => [$listen_port],
+    firewall { 'allow tomcat access':
+      dport  => [8080,9090],
       proto  => tcp,
       action => accept,
     }
