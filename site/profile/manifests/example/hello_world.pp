@@ -22,30 +22,10 @@ class profile::example::hello_world (
     java_opts     => ['-server','-Djava.net.preferIPv4Stack=true','-Djava.net.preferIPv4Addresses'],
   }
 
-  tomcat::instance { 'tomcat-first':
-    server_control_port => 8005,
-    http_port           => 8080,
-    manage_firewall     => true,
-  }
-
-  tomcat::instance { 'tomcat-second':
-    server_control_port => 8006,
-    ajp_port            => 8109,
-    http_port           => 8081,
-    manage_firewall     => true,
-  }
-
   $war_files.each |$war_file| {
 
-    file {"/var/lib/tomcats/tomcat-first/webapps/${war_file}":
-      ensure => present,
-      owner  => tomcat,
-      group  => tomcat,
-      mode   => '0755',
-      source => "${war_source}/${war_file}",
-    }
 
-    file {"/var/lib/tomcats/tomcat-second/webapps/${war_file}":
+    file {"/opt/tomcat/webapps/${war_file}":
       ensure => present,
       owner  => tomcat,
       group  => tomcat,
