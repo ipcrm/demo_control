@@ -29,7 +29,6 @@ class profile::example::hello_world (
   }
 
   tomcat::instance { 'instance2':
-    install_from        => 'archive',
     version             => '8.0.18',
     catalina_home       => '/opt/tomcat2',
     java_opts           => [
