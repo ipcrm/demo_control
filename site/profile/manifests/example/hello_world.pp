@@ -1,7 +1,9 @@
 class profile::example::hello_world (
-  $war_files = ['helloworld.war'],
-  $war_source = 'http://master.demo.lan/artifacts',
-  $tomcat_source = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz',
+  $war_files       = ['helloworld.war'],
+  $war_source      = 'http://master.demo.lan/artifacts',
+  $tomcat_source   = 'https://www.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz',
+  $listen_port     = '8080',
+  $manage_firewall = true
 ){
 
   package {'haveged':
@@ -27,6 +29,7 @@ class profile::example::hello_world (
   tomcat::config::server { 'default':
       catalina_base => '/opt/tomcat',
       address       => '0.0.0.0',
+      port          => $listen_port,
   }
 
   tomcat::service {'default':
@@ -63,6 +66,16 @@ class profile::example::hello_world (
       owner   => 'tomcat',
       group   => 'tomcat',
       require => Remote_file[$war_file],
+    }
+
+  }
+
+  if $manage_firewall == true {
+
+    firewall { "${listen_port} allow tomcat access":
+      dport  => [$listen_port],
+      proto  => tcp,
+      action => accept,
     }
 
   }
