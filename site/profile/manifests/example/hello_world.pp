@@ -19,7 +19,12 @@ class profile::example::hello_world (
     install_from    => 'archive',
     version         => '8.0.15',
     catalina_home   => '/opt/tomcat',
-    java_opts       => ['-server','-Djava.net.preferIPv4Stack=true','-Djava.net.preferIPv4Addresses'],
+    java_opts       => [
+      '-server',
+      '-Djava.net.preferIPv4Stack=true',
+      '-Djava.net.preferIPv4Addresses',
+      '-Djava.security.egd=file:/dev/./urandom',
+    ],
     manage_firewall => $manage_firewall,
   }
 
