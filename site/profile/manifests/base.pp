@@ -8,11 +8,6 @@ class profile::base(
     host_aliases => [$::hostname],
   }
 
-
-  if pick_default($::echo_me,undef) != undef {
-      notify{$::echo_me: }
-  }
-
   contain ::profile::base::ntp
   contain ::profile::base::motd
   contain ::profile::base::ssh
