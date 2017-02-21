@@ -66,13 +66,3 @@ if pick($::noop_disable,false) == false {
   }
 }
 
-Class <||> ->
-  if defined(Class['Profile::Base::Security::Firewall']){
-    notify{'test': }
-  }
-
-
-
-
-
-
