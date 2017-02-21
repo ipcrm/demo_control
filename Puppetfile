@@ -86,11 +86,11 @@ mod 'profile_websphere',
 mod 'flask_app',
   :git => 'https://github.com/ipcrm/ipcrm-flask_app.git'
 
-mod 'team_x',
-  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
-  :branch => :control_branch,
-  :default_branch => 'master',
-  :install_path => 'hieradata'
+#mod 'team_x',
+#  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
+#  :branch => :control_branch,
+#  :default_branch => 'master',
+#  :install_path => 'hieradata'
 
 mod 'ntp',
   :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
