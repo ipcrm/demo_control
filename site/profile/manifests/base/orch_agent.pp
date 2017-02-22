@@ -9,7 +9,9 @@ class profile::base::orch_agent {
     path    => $puppet_conf,
     section => 'agent',
     setting => 'use_cached_catalog',
+    # lint:ignore:quoted_booleans
     value   => 'true',
+    # lint:endignore
   }
 
 }

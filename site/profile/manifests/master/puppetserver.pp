@@ -17,10 +17,10 @@ class profile::master::puppetserver {
       provider => puppetserver_gem,
     }
 
-    class { 'hiera':
-      datadir_manage      => false,
-      datadir             => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
-      hierarchy           => [
+    class { '::hiera':
+      datadir_manage       => false,
+      datadir              => '/etc/puppetlabs/code/environments/%{environment}/hieradata',
+      hierarchy            => [
         'nodes/%{clientcert}',
         '%{environment}/%{role}',
         '%{environment}/common',
@@ -36,27 +36,31 @@ class profile::master::puppetserver {
       merge_behavior       => 'deeper',
       backends             => ['eyaml','http'],
       backend_options      => {
-        'http'            => {
-          'host'          => 'jenkins.demo.lan',
-          'port'          => '8080',
-          'output'        => 'json',
-          'use_auth'      => 'true',
-          'auth_user'     => 'admin',
-          'auth_pass'     => 'puppetlabs',
-          'cache_timeout' => 10,
-          'failure'       => 'graceful',
-          'paths'         => [
+        'http'              => {
+          'host'            => 'jenkins.demo.lan',
+          'port'            => '8080',
+          'output'          => 'json',
+          # lint:ignore:quoted_booleans
+          'use_auth'        => 'true',
+          # lint:endignore
+          'auth_user'       => 'admin',
+          'auth_pass'       => 'puppetlabs',
+          'cache_timeout'   => 10,
+          'failure'         => 'graceful',
+          'paths'           => [
+            # lint:ignore:double_quoted_strings
             "/hiera/lookup?scope=%{::trusted.certname}&key=%{key}",
             "/hiera/lookup?scope=%{::virtual}&key=%{key}",
             "/hiera/lookup?scope=%{::appenv}&key=%{key}",
-            "/hiera/lookup?scope=%{::environment}&key=%{key}"
+            "/hiera/lookup?scope=%{::environment}&key=%{key}",
           ],
           'confine_to_keys' => [
             "rgbank.*",
             "flask_puppet.*",
+            # lint:endignore
           ],
-        }
-      }
+        },
+      },
     }
 
     if defined(Service['pe-puppetserver']){
