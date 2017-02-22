@@ -158,7 +158,7 @@ module OctocatalogDiff
       ##############################################################################################
 
       # settings[:bootstrap_script] = '/etc/puppetlabs/repo-bootstrap.sh' # Absolute path
-      # settings[:bootstrap_script] = 'script/bootstrap' # Relative path
+      settings[:bootstrap_script] = 'octocatalog-diff/setup.sh'
 
       ##############################################################################################
       # pass_env_vars
