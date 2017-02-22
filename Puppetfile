@@ -91,8 +91,3 @@ mod 'flask_app',
 #  :branch => :control_branch,
 #  :default_branch => 'master',
 #  :install_path => 'hieradata'
-
-mod 'ntp',
-  :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
-  :ref => 'jenkins-pipeline-ntp-18',
-  :install_path => ''

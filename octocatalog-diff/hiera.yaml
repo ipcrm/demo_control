@@ -1,0 +1,20 @@
+# managed by puppet
+---
+:backends:
+- yaml
+- http
+
+:logger: console
+
+:hierarchy:
+  - "nodes/%{clientcert}"
+  - "%{environment}/%{role}"
+  - "%{environment}/common"
+  - "%{location}/%{role}"
+  - "%{location}/common"
+  - "role/%{role}"
+  - common
+
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+:merge_behavior: deeper
