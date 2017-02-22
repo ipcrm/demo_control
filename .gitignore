@@ -1,3 +1,6 @@
 Gemfile.lock
 modules/
 ntp/
+puppetdb.key.pem
+puppetdb.pem
+ca.pem
