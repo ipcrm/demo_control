@@ -10,7 +10,6 @@ profile::base::motd::message: |
 #DNS
 profile::base::dns::search:
   - demo.lan
-
 profile::base::dns::nameserver:
   - '10.240.0.10'
   - '10.240.1.10'
