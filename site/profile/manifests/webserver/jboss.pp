@@ -11,6 +11,7 @@ class profile::webserver::jboss (
     install_source => $source,
     version        => $version,
     require        => Class['java'],
+    java_home      => '/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-0.b13.el7_3.x86_64/jre/',
   }
 
   firewall { '100 allow connections to wildfly':
