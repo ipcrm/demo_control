@@ -51,6 +51,7 @@ mod 'puppetlabs-puppet_agent',    '1.3.1'
 mod 'lwf/remote_file', '1.1.3'
 mod 'trlinkin-noop', '0.1.0'
 mod 'saz-sudo', '4.1.0'
+mod 'biemond-wildfly', '1.2.7'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
