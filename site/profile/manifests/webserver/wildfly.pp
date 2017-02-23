@@ -1,6 +1,6 @@
-class profile::wildfly (
+class profile::webserver::wildfly (
   $version = '8.0.0',
-  $source = "http://download.jboss.org/wildfly/${version}.Final/wildfly-8.0.0.Final.tar.gz"
+  $source = "http://download.jboss.org/wildfly/${version}.Final/wildfly-${version}.Final.tar.gz"
 ) {
 
   class { '::java':
