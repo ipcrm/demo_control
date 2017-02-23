@@ -3,7 +3,7 @@ class profile::apps::hello_world (
   $war_source      = 'http://master.demo.lan/artifacts',
 ){
 
-  contain ::profile::webserver::wildfly
+  contain ::profile::webserver::jboss
 
   $war_files.each |$w| {
 
