@@ -49,5 +49,7 @@ node {
       puppet.credentials 'pe-access-token'
       puppet.codeDeploy env.BRANCH_NAME
     }
+  }
 
 }
+
