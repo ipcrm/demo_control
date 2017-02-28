@@ -63,5 +63,6 @@ if pick($::noop_disable,false) == false {
   if $::role != 'master' {
     notify{'Noop Enabled': }
     noop()
+  }
 }
 
