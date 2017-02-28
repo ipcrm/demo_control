@@ -53,6 +53,7 @@ mod 'trlinkin-noop', '0.1.0'
 mod 'saz-sudo', '4.1.0'
 mod 'biemond-wildfly', '1.2.7'
 mod 'jethrocarr-initfact', '1.0.1'
+mod 'vshn-gitlab', '1.11.0'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
