@@ -45,7 +45,7 @@ node {
       }
     }
 
-    stage("Promote to env.BRANCH_NAME"){
+    stage("Promote To Environment"){
       puppet.credentials 'pe-access-token'
       puppet.codeDeploy env.BRANCH_NAME
     }
