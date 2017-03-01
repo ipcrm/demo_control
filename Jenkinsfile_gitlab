@@ -1,7 +1,7 @@
 
 node {
 
-    if $ACTION.equals("PUSH") {
+    if ( $ACTION == "PUSH" ) {
 
       stage("Promote To Environment"){
         puppet.credentials 'pe-access-token'
