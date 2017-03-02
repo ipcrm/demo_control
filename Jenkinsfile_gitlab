@@ -1,15 +1,15 @@
 
 node {
 
-    if $ACTION.equals("PUSH") {
+    if ( env.ACTION == "PUSH" ) {
 
       stage("Promote To Environment"){
         puppet.credentials 'pe-access-token'
-        puppet.codeDeploy $DEPLOY_BRANCH
+        puppet.codeDeploy env.DEPLOY_BRANCH
       }
 
     }
-  }
 
 }
+
 

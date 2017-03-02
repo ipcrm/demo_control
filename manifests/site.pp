@@ -1,21 +1,22 @@
 # Disable filebucket by default for all File resources:
 File { backup => false }
-#site {
-#
-#  flask_app {'prod':
-#    app_name => 'webui',
-#    nodes    => {
-#      Node['flask-2.demo.lan'] => [Flask_app::Webhead['prod']],
-#    },
-#  }
-#
-#  flask_app {'dev':
-#    app_name => 'webui',
-#    nodes    => {
-#      Node['flask-1.demo.lan'] => [Flask_app::Webhead['dev']],
-#    },
-#  }
-#
+site {
+
+  flask_app {'prod':
+    app_name => 'webui',
+    nodes    => {
+      Node['flask-2.demo.lan'] => [Flask_app::Webhead['prod']],
+    },
+  }
+
+  flask_app {'dev':
+    app_name => 'webui',
+    nodes    => {
+      Node['flask-1.demo.lan'] => [Flask_app::Webhead['dev']],
+    },
+  }
+}
+
 ##  cloudshop { 'solo':
 ##    dbinstance                                  => 'MYINSTANCE',
 ##    dbuser                                      => 'CloudShop',
