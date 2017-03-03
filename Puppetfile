@@ -90,7 +90,7 @@ mod 'flask_app',
   :git => 'https://github.com/ipcrm/ipcrm-flask_app.git'
 
 mod 'team_x',
-  :git => 'git@github.com:ipcrm/teamx_hieradata.git',
+  :git => 'https://github.com/ipcrm/teamx_hieradata.git',
   :branch => :control_branch,
   :default_branch => 'master',
   :install_path => 'hieradata'
