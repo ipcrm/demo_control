@@ -19,7 +19,7 @@ class profile::base::reboots {
 
     'Linux': {
 
-      if $::facts['os']['family'] == 'RedHat' {
+      if $::facts['os']['family'] == 'RedHat' and $::virtual != 'docker' {
 
         reboot { 'selinux':
           subscribe => Class['selinux::config'],
