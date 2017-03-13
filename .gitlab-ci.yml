@@ -39,6 +39,20 @@ deploy_review:
     - branches
   except:
     - production
+    - dev
+    - test
+
+deploy_non_prod:
+  stage: deploy
+  script:
+    - echo "Deploying Feature Branch"
+    - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
+  environment:
+    name: $CI_BUILD_REF_NAME
+    url: http://git.demo.lan/puppet/control-repo/tree/$CI_BUILD_REF_NAME
+  only:
+    - dev
+    - test
 
 deploy_production:
   stage: deploy
