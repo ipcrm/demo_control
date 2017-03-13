@@ -40,7 +40,7 @@ deploy_production:
   stage: deploy
   script:
     - echo "Deploying Feature Branch"
-    - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
+    - /opt/puppetlabs/bin/puppet-code deploy -w --all
   environment:
     name: production
     url: http://git.demo.lan/puppet/control-repo/tree/production
