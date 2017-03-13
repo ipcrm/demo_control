@@ -24,6 +24,10 @@ class profile::apps::gitlabrunner (
 
   include ::profile::tools::rbenv
 
+  package{ 'cmake':
+    ensure => present,
+  }
+
   sudo::conf { 'gitlab-runner':
     priority => 10,
     content  => 'gitlab-runner ALL=(ALL) NOPASSWD:ALL',
