@@ -6,12 +6,12 @@ before_script:
 
 lint:
   script:
-    - "bundle exec rake lint"
+    - bundle exec rake lint
 
 syntax:
   script:
-    - "bundle exec rake syntax -v"
+    - bundle exec rake syntax -v
 
 r10ksyntax:
   script:
-    - "bundle exec rake r10k:syntax"
+    - bundle exec rake r10k:syntax
