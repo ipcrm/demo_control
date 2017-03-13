@@ -13,9 +13,14 @@ class profile::apps::gitlabrunner (
 
   class{ '::gitlab::cirunner': }
 
+  user{'gitlab-runner':
+    groups => ['gitlab-runner','docker'],
+  }
+
   gitlab::runner { keys($gitlab_ci_runners):
     runners_hash   => $gitlab_ci_runners,
     default_config => $gitlab_runner_defaults,
   }
+
 
 }
