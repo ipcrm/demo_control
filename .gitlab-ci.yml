@@ -35,7 +35,7 @@ deploy_feature:
   <<: *deploy_pre_req
   stage: deploy
   script:
-    - echo "Deploying Feature Branch: ${CI_BUILD_REF_NAME}"
+    - echo "Deploying Feature Branch - ${CI_BUILD_REF_NAME}"
     - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
   environment:
     name: testing/$CI_BUILD_REF_NAME
@@ -51,7 +51,7 @@ deploy_stable:
   <<: *deploy_pre_req
   stage: deploy
   script:
-    - echo "Deploying Stable Env: ${CI_BUILD_REF_NAME}"
+    - echo "Deploying Stable Env - ${CI_BUILD_REF_NAME}"
     - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
   environment:
     name: $CI_BUILD_REF_NAME
