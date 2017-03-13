@@ -37,7 +37,7 @@ class profile::apps::gitlabrunner (
     content  => 'Defaults:gitlab-runner !requiretty',
   }
 
-
+  include ::puppet_enterprise::profile::controller
 
 
 }
