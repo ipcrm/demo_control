@@ -15,3 +15,28 @@ syntax:
 r10ksyntax:
   script:
     - bundle exec rake r10k:syntax
+
+deploy_review:
+  stage: deploy
+  script:
+    - echo "Deploying Feature Branch"
+    - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
+  environment:
+    name: feature/$CI_BUILD_REF_NAME
+    url: http://git.demo.lan/puppet/control-repo/tree/$CI_BUILD_REF_NAME
+  only:
+    - branches
+  except:
+    - production
+
+deploy_review:
+  stage: deploy
+  script:
+    - echo "Deploying Feature Branch"
+    - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
+  environment:
+    name: production
+    url: http://git.demo.lan/puppet/control-repo/tree/production
+  when: manual
+  only:
+    - production
