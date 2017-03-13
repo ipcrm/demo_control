@@ -31,14 +31,14 @@ r10ksyntax:
   script:
     - bundle exec rake r10k:syntax
 
-deploy_review:
+deploy_feature:
   <<: *deploy_pre_req
   stage: deploy
   script:
     - echo "Deploying Feature Branch"
     - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
   environment:
-    name: feature/$CI_BUILD_REF_NAME
+    name: testing/$CI_BUILD_REF_NAME
     url: http://git.demo.lan/puppet/control-repo/tree/$CI_BUILD_REF_NAME
   only:
     - branches
