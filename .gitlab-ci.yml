@@ -5,6 +5,10 @@
     - rbenv shell 2.3.1
     - bundle install
 
+.deploy_pre_req: &deploy_pre_req
+  before_script:
+    - sh -x scripts/ci_puppet_access.sh
+
 stages:
   - test
   - deploy
@@ -28,6 +32,7 @@ r10ksyntax:
     - bundle exec rake r10k:syntax
 
 deploy_review:
+  <<: *deploy_pre_req
   stage: deploy
   script:
     - echo "Deploying Feature Branch"
@@ -43,6 +48,7 @@ deploy_review:
     - dev
 
 deploy_dev:
+  <<: *deploy_pre_req
   stage: deploy
   script:
     - echo "Deploying DEV Env"
@@ -54,6 +60,7 @@ deploy_dev:
     - dev
 
 deploy_qa:
+  <<: *deploy_pre_req
   stage: deploy
   script:
     - echo "Deploying QA Env"
@@ -65,6 +72,7 @@ deploy_qa:
     - qa
 
 deploy_production:
+  <<: *deploy_pre_req
   stage: deploy
   script:
     - echo "Deploying Production Env"
