@@ -39,11 +39,35 @@ deploy_review:
     - branches
   except:
     - production
+    - qa
+    - dev
+
+deploy_dev:
+  stage: deploy
+  script:
+    - echo "Deploying DEV Env"
+    - /opt/puppetlabs/bin/puppet-code deploy -w dev
+  environment:
+    name: dev
+    url: http://git.demo.lan/puppet/control-repo/tree/dev
+  only:
+    - dev
+
+deploy_qa:
+  stage: deploy
+  script:
+    - echo "Deploying QA Env"
+    - /opt/puppetlabs/bin/puppet-code deploy -w qa
+  environment:
+    name: qa
+    url: http://git.demo.lan/puppet/control-repo/tree/qa
+  only:
+    - qa
 
 deploy_production:
   stage: deploy
   script:
-    - echo "Deploying Feature Branch"
+    - echo "Deploying Production Env"
     - /opt/puppetlabs/bin/puppet-code deploy -w production
   environment:
     name: production
