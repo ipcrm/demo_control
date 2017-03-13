@@ -28,7 +28,7 @@ class profile::apps::gitlabrunner (
     priority => 10,
     content  => 'gitlab-runner ALL=(ALL) NOPASSWD:ALL',
   }
-  sudo::conf { 'gitlab-runner':
+  sudo::conf { 'gitlab-runner-defaults':
     priority => 15,
     content  => 'Defaults:gitlab-runner !requiretty',
   }
