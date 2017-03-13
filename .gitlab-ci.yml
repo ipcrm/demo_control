@@ -1,24 +1,28 @@
+.job_pre_req: &job_prereq
+  before_script:
+    - sh -x scripts/ci_puppet_access.sh
+    - source ~/.bash_profile
+    - rbenv shell 2.3.1
+    - bundle install
+
 stages:
   - test
   - deploy
 
-before_script:
-  - sh -x scripts/ci_puppet_access.sh
-  - source ~/.bash_profile
-  - rbenv shell 2.3.1
-  - bundle install
-
 lint:
+  <<: *job_prereq
   stage: test
   script:
     - bundle exec rake lint
 
 syntax:
+  <<: *job_prereq
   stage: test
   script:
     - bundle exec rake syntax -v
 
 r10ksyntax:
+  <<: *job_prereq
   stage: test
   script:
     - bundle exec rake r10k:syntax
