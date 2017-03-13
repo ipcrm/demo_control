@@ -22,5 +22,7 @@ class profile::apps::gitlabrunner (
     default_config => $gitlab_runner_defaults,
   }
 
+  include ::profile::tools::rbenv
+
 
 }
