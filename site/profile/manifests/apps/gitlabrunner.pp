@@ -24,5 +24,16 @@ class profile::apps::gitlabrunner (
 
   include ::profile::tools::rbenv
 
+  sudo::conf { 'gitlab-runner':
+    priority => 10,
+    content  => 'gitlab-runner ALL=(ALL) NOPASSWD:ALL',
+  }
+  sudo::conf { 'gitlab-runner':
+    priority => 15,
+    content  => 'Defaults:gitlab-runner !requiretty',
+  }
+
+
+
 
 }
