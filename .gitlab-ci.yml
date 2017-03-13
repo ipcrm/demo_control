@@ -1,0 +1,17 @@
+before_script:
+  - source ~/.bash_profile
+  - rbenv global 2.3.1
+  - eval "$(rbenv init -)"
+  - bundle install
+
+lint:
+  script:
+    - "bundle exec rake lint"
+
+syntax:
+  script:
+    - "bundle exec rake syntax -v"
+
+r10ksyntax:
+  script:
+    - "bundle exec rake r10k:syntax"
