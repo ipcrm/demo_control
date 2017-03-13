@@ -35,7 +35,7 @@ deploy_feature:
   <<: *deploy_pre_req
   stage: deploy
   script:
-    - echo "Deploying Feature Branch"
+    - echo "Deploying Feature Branch: ${CI_BUILD_REF_NAME}"
     - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
   environment:
     name: testing/$CI_BUILD_REF_NAME
@@ -43,43 +43,20 @@ deploy_feature:
   only:
     - branches
   except:
+    - dev
+    - qa
     - production
-    - qa
-    - dev
 
-deploy_dev:
+deploy_stable:
   <<: *deploy_pre_req
   stage: deploy
   script:
-    - echo "Deploying DEV Env"
-    - /opt/puppetlabs/bin/puppet-code deploy -w dev
+    - echo "Deploying Stable Env: ${CI_BUILD_REF_NAME}"
+    - /opt/puppetlabs/bin/puppet-code deploy -w $CI_BUILD_REF_NAME
   environment:
-    name: dev
-    url: http://git.demo.lan/puppet/control-repo/tree/dev
+    name: $CI_BUILD_REF_NAME
+    url: http://git.demo.lan/puppet/control-repo/tree/$CI_BUILD_REF_NAME
   only:
     - dev
-
-deploy_qa:
-  <<: *deploy_pre_req
-  stage: deploy
-  script:
-    - echo "Deploying QA Env"
-    - /opt/puppetlabs/bin/puppet-code deploy -w qa
-  environment:
-    name: qa
-    url: http://git.demo.lan/puppet/control-repo/tree/qa
-  only:
     - qa
-
-deploy_production:
-  <<: *deploy_pre_req
-  stage: deploy
-  script:
-    - echo "Deploying Production Env"
-    - /opt/puppetlabs/bin/puppet-code deploy -w production
-  environment:
-    name: production
-    url: http://git.demo.lan/puppet/control-repo/tree/production
-  when: manual
-  only:
     - production
