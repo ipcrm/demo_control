@@ -36,7 +36,7 @@ deploy_review:
   except:
     - production
 
-deploy_review:
+deploy_production:
   stage: deploy
   script:
     - echo "Deploying Feature Branch"
