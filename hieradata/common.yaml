@@ -45,6 +45,7 @@ puppet_enterprise::master::puppetserver::jruby_max_active_instances: 4
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
+puppet_enterprise::master::puppetserver::pre_commit_hook_commands: []
 
 #Localtime
 puppet_enterprise::profile::console::display_local_time: true
