@@ -36,30 +36,19 @@ site {
     }
   }
 
+  cloudshop { 'split':
+    dbinstance => 'MYINSTANCE',
+    dbuser     => 'CloudShop',
+    dbpassword => 'Azure$123',
+    dbname     => 'AdventureWorks2012',
+    nodes      => {
+      Node['cloudshop-iis.demo.lan'] => Cloudshop::App['split'],
+      Node['cloudshop-db.demo.lan']  => Cloudshop::Db['split'],
+    },
+  }
+
 }
 
-##  cloudshop { 'solo':
-##    dbinstance                                  => 'MYINSTANCE',
-##    dbuser                                      => 'CloudShop',
-##    dbpassword                                  => 'Azure$123',
-##    dbname                                      => 'AdventureWorks2012',
-##    nodes                                       => {
-##      Node['cloudshop-solo.demo.lan'] => [Cloudshop::App['solo'], Cloudshop::Db['solo']],
-##    },
-##  }
-#
-##  cloudshop { 'split':
-##    dbinstance    => 'MYINSTANCE',
-##    dbuser        => 'CloudShop',
-##    dbpassword    => 'Azure$123',
-##    dbname        => 'AdventureWorks2012',
-##    nodes         => {
-##      Node['cloudshop-iis.demo.lan'] => Cloudshop::App['split'],
-##      Node['cloudshop-db.demo.lan'] => Cloudshop::Db['split'],
-##    },
-##  }
-#
-#}
 
 if pick($::noop_disable,false) == false {
   if $::role != 'master' {
