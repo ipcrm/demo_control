@@ -17,7 +17,10 @@ class profile::base(
   contain ::profile::base::dns
   contain ::profile::base::users_groups
   contain ::profile::base::security
-  contain ::profile::base::sudo
+
+  if $::facts['kernel'] != 'windows' {
+    contain ::profile::base::sudo
+  }
 
   if $orch_agent == true { contain ::profile::base::orch_agent }
 
