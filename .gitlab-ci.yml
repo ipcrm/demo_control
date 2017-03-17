@@ -12,7 +12,8 @@
 stages:
   - test
   - deploy
-  - release
+  - release_nonprod
+  - release_prod
 
 lint:
   <<: *job_prereq
@@ -60,7 +61,7 @@ deploy_stable:
 
 release_canary:
   <<: *deploy_pre_req
-  stage: release
+  stage: release_nonprod
   script:
     - /opt/puppetlabs/bin/puppet-job run --query 'nodes { facts { name = "canary" and value = true }}'
   when: manual
@@ -69,7 +70,7 @@ release_canary:
 
 release_production:
   <<: *deploy_pre_req
-  stage: release
+  stage: release_prod
   script:
     - /opt/puppetlabs/bin/puppet-job run --query 'nodes{}[]}' --concurrency 10
   when: manual
