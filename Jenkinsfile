@@ -3,7 +3,7 @@ properties([gitLabConnection('git.demo.lan')])
 node {
 
   stage('setup') {
-    withEnv(['PATH=/usr/local/bin:$PATH']) {
+    withEnv(['PATH+EXTRA=/usr/local/bin']) {
       ansiColor('xterm') {
         gitbranch = sh(returnStdout: true, script: '''
           git rev-parse --abbrev-ref HEAD
@@ -14,7 +14,7 @@ node {
 
   stage('test'){
     stage('Lint Control Repo'){
-      withEnv(['PATH=/usr/local/bin:$PATH']) {
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
         ansiColor('xterm') {
           sh(script: '''
             source ~/.bash_profile
@@ -28,7 +28,7 @@ node {
     }
 
     stage('Syntax Check Control Repo'){
-      withEnv(['PATH=/usr/local/bin:$PATH']) {
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
         ansiColor('xterm') {
           sh(script: '''
             source ~/.bash_profile
@@ -42,7 +42,7 @@ node {
     }
 
     stage('Validate Puppetfile in Control Repo'){
-      withEnv(['PATH=/usr/local/bin:$PATH']) {
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
         ansiColor('xterm') {
           sh(script: '''
             source ~/.bash_profile
