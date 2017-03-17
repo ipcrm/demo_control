@@ -96,7 +96,7 @@ node {
 
 }
 
-if ! (env.gitlabMergeRequestId) {
+if (! env.gitlabMergeRequestId) {
   stage("Promote To Environment"){
     puppet.credentials 'pe-access-token'
     puppet.codeDeploy env.gitlabBranch
