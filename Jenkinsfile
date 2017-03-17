@@ -50,49 +50,55 @@ node {
     handleCheckout()
   }
 
-  stage('test'){
-    stage('Lint Control Repo'){
-      withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
-        ansiColor('xterm') {
-          previous_version = sh(returnStdout: true, script: '''
-            source ~/.bash_profile
-            rbenv global 2.3.1
-            eval "$(rbenv init -)"
-            bundle install
-            bundle exec rake lint
-          ''')
+  parallel (
+    phase1: {
+      stage('Lint Control Repo'){
+        withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
+          ansiColor('xterm') {
+            previous_version = sh(returnStdout: true, script: '''
+              source ~/.bash_profile
+              rbenv global 2.3.1
+              eval "$(rbenv init -)"
+              bundle install
+              bundle exec rake lint
+            ''')
+          }
         }
       }
     }
 
-    stage('Syntax Check Control Repo'){
-      withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
-        ansiColor('xterm') {
-          previous_version = sh(returnStdout: true, script: '''
-            source ~/.bash_profile
-            rbenv global 2.3.1
-            eval "$(rbenv init -)"
-            bundle install
-            bundle exec rake syntax --verbose
-          ''')
+    phase2: {
+      stage('Syntax Check Control Repo'){
+        withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
+          ansiColor('xterm') {
+            previous_version = sh(returnStdout: true, script: '''
+              source ~/.bash_profile
+              rbenv global 2.3.1
+              eval "$(rbenv init -)"
+              bundle install
+              bundle exec rake syntax --verbose
+            ''')
+          }
         }
       }
     }
 
-    stage('Validate Puppetfile in Control Repo'){
-      withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
-        ansiColor('xterm') {
-          previous_version = sh(returnStdout: true, script: '''
-            source ~/.bash_profile
-            rbenv global 2.3.1
-            eval "$(rbenv init -)"
-            bundle install
-            bundle exec rake r10k:syntax
-          ''')
+    phase3: {
+      stage('Validate Puppetfile in Control Repo'){
+        withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
+          ansiColor('xterm') {
+            previous_version = sh(returnStdout: true, script: '''
+              source ~/.bash_profile
+              rbenv global 2.3.1
+              eval "$(rbenv init -)"
+              bundle install
+              bundle exec rake r10k:syntax
+            ''')
+          }
         }
       }
     }
-  }
+  )
 
 }
 
