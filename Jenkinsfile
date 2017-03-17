@@ -10,6 +10,8 @@ node {
         ''')
       }
     }
+    echo 'TEST'
+    echo env.gitbranch
   }
 
   stage('Lint Control Repo'){
