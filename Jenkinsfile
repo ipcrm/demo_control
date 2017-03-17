@@ -2,7 +2,7 @@ properties([gitLabConnection('git.demo.lan')])
 
 node {
   dir('control-repo') {
-    git url: 'git@github.com:ipcrm/demo_control.git', branch: env.BRANCH_NAME
+    git url: 'git@git.demo.lan:puppet/control-repo.git', branch: env.BRANCH_NAME
 
     stage('Lint Control Repo'){
       withEnv(['PATH+EXTRA=/usr/local/bin']) {
