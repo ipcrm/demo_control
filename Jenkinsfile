@@ -2,18 +2,6 @@ properties([gitLabConnection('git.demo.lan')])
 
 node {
 
-  stage('setup') {
-    withEnv(['PATH+EXTRA=/usr/local/bin']) {
-      ansiColor('xterm') {
-        env.gitbranch = sh(returnStdout: true, script: '''
-          git rev-parse --abbrev-ref HEAD
-        ''')
-      }
-    }
-    echo 'TEST'
-    echo env.gitbranch
-  }
-
   stage('Lint Control Repo'){
     withEnv(['PATH+EXTRA=/usr/local/bin']) {
       ansiColor('xterm') {
@@ -58,7 +46,7 @@ node {
 
   stage("Promote To Environment"){
     puppet.credentials 'pe-access-token'
-    puppet.codeDeploy 'production'
+    puppet.codeDeploy env.BRANCH_NAME
   }
 
 }
