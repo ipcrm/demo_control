@@ -73,7 +73,5 @@ release_production:
   script:
     - /opt/puppetlabs/bin/puppet-job run --query 'nodes{}[]}' --concurrency 10
   when: manual
-  dependencies:
-    - release_canary
   only:
     - production
