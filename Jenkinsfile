@@ -5,7 +5,7 @@ node {
   stage('setup') {
     withEnv(['PATH+EXTRA=/usr/local/bin']) {
       ansiColor('xterm') {
-        gitbranch = sh(returnStdout: true, script: '''
+        env.gitbranch = sh(returnStdout: true, script: '''
           git rev-parse --abbrev-ref HEAD
         ''')
       }
@@ -56,7 +56,7 @@ node {
 
   stage("Promote To Environment"){
     puppet.credentials 'pe-access-token'
-    puppet.codeDeploy gitbranch
+    puppet.codeDeploy env.gitbranch
   }
 
 }
