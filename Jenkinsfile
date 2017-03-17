@@ -1,3 +1,5 @@
+properties([gitLabConnection('git.demo.lan')])
+
 node {
 
   stage('setup') {
