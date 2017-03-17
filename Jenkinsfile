@@ -56,7 +56,7 @@ node {
 
   stage("Promote To Environment"){
     puppet.credentials 'pe-access-token'
-    puppet.codeDeploy env.gitbranch
+    puppet.codeDeploy 'production'
   }
 
 }
