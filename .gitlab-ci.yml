@@ -65,6 +65,8 @@ release_canary:
   script:
     - /opt/puppetlabs/bin/puppet-job run --query 'nodes { facts { name = "canary" and value = true }}'
   when: manual
+  dependencies:
+    - deploy_stable
   only:
     - production
 
@@ -73,6 +75,8 @@ release_production:
   stage: release_prod
   script:
     - /opt/puppetlabs/bin/puppet-job run --query 'nodes{}[]}' --concurrency 10
+  dependencies:
+    - release_canary
   when: manual
   only:
     - production
