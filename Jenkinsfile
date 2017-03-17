@@ -65,8 +65,7 @@ node {
           }
         }
       }
-    }
-
+    },
     phase2: {
       stage('Syntax Check Control Repo'){
         withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
@@ -81,8 +80,7 @@ node {
           }
         }
       }
-    }
-
+    },
     phase3: {
       stage('Validate Puppetfile in Control Repo'){
         withEnv(['PATH=/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin']) {
