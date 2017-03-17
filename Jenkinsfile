@@ -56,10 +56,11 @@ node {
     }
   }
 
+  stage("Promote To Environment"){
+    puppet.credentials 'pe-access-token'
+    puppet.codeDeploy gitbranch
+  }
+
 }
 
-stage("Promote To Environment"){
-  puppet.credentials 'pe-access-token'
-  puppet.codeDeploy gitbranch
-}
 
