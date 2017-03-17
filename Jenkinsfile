@@ -1,9 +1,56 @@
+def handleCheckout = {
+  if (env.gitlabMergeRequestId) {
+    sh "echo 'Merge request detected. Merging...'"
+    def credentialsId = scm.userRemoteConfigs[0].credentialsId
+    checkout ([
+      $class: 'GitSCM',
+      branches: [[name: "${env.gitlabSourceNamespace}/${env.gitlabSourceBranch}"]],
+      extensions: [
+        [$class: 'PruneStaleBranch'],
+        [$class: 'CleanCheckout'],
+        [
+          $class: 'PreBuildMerge',
+          options: [
+            fastForwardMode: 'NO_FF',
+            mergeRemote: env.gitlabTargetNamespace,
+            mergeTarget: env.gitlabTargetBranch
+          ]
+        ]
+      ],
+      userRemoteConfigs: [
+        [
+          credentialsId: credentialsId,
+          name: env.gitlabTargetNamespace,
+          url: env.gitlabTargetRepoSshURL
+        ],
+        [
+          credentialsId: credentialsId,
+          name: env.gitlabSourceNamespace,
+          url: env.gitlabTargetRepoSshURL
+        ]
+      ]
+    ])
+  } else {
+    sh "echo 'No merge request detected. Checking out current branch'"
+    checkout ([
+      $class: 'GitSCM',
+      branches: scm.branches,
+      extensions: [
+          [$class: 'PruneStaleBranch'],
+          [$class: 'CleanCheckout']
+      ],
+      userRemoteConfigs: scm.userRemoteConfigs
+    ])
+  }
+}
 
 node {
 
-  dir('control-repo') {
-    git url: 'git@github.com:ipcrm/demo_control.git', branch: env.BRANCH_NAME
+  stage('setup') {
+    handleCheckout()
+  }
 
+  stage('test'){
     stage('Lint Control Repo'){
       withEnv(['PATH=/usr/local/bin:$PATH']) {
         ansiColor('xterm') {
@@ -17,6 +64,7 @@ node {
         }
       }
     }
+
     stage('Syntax Check Control Repo'){
       withEnv(['PATH=/usr/local/bin:$PATH']) {
         ansiColor('xterm') {
@@ -44,12 +92,14 @@ node {
         }
       }
     }
-
-    stage("Promote To Environment"){
-      puppet.credentials 'pe-access-token'
-      puppet.codeDeploy env.BRANCH_NAME
-    }
   }
 
+}
+
+if ! (env.gitlabMergeRequestId) {
+  stage("Promote To Environment"){
+    puppet.credentials 'pe-access-token'
+    puppet.codeDeploy env.gitlabBranch
+  }
 }
 
