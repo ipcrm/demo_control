@@ -12,6 +12,7 @@
 stages:
   - test
   - deploy
+  - release
 
 lint:
   <<: *job_prereq
@@ -43,8 +44,6 @@ deploy_feature:
   only:
     - branches
   except:
-    - dev
-    - qa
     - production
 
 deploy_stable:
@@ -57,6 +56,24 @@ deploy_stable:
     name: $CI_BUILD_REF_NAME
     url: http://git.demo.lan/puppet/control-repo/tree/$CI_BUILD_REF_NAME
   only:
-    - dev
-    - qa
+    - production
+
+release_canary:
+  <<: *deploy_pre_req
+  stage: release
+  script:
+    - /opt/puppetlabs/bin/puppet-job run --query 'nodes { facts { name = "canary" and value = true }}'
+  when: manual
+  only:
+    - production
+
+release_production:
+  <<: *deploy_pre_req
+  stage: release
+  script:
+    - /opt/puppetlabs/bin/puppet-job run --query 'nodes{}[]}' --concurrency 10
+  when: manual
+  dependencies:
+    - release_canary
+  only:
     - production
