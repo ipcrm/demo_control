@@ -2,28 +2,30 @@ node {
   try {
     updateGitlabCommitStatus(name: 'build', state: 'running')
 
-    checkout(
-             changelog: true,
-             [$class: 'GitSCM',
-              branches: [
-                [
-                  name: "origin/${env.gitlabSourceBranch}"]],
-                  doGenerateSubmoduleConfigurations: false,
-                  extensions: [
-                    [$class: 'PreBuildMerge',
-                      options: [
-                        fastForwardMode: 'FF',
-                        mergeRemote: 'origin',
-                        mergeStrategy: 'default',
-                        mergeTarget: "${env.gitlabTargetBranch}"
-                      ]
-                    ]
-                  ],
-                submoduleCfg: [],
-                userRemoteConfigs:
-                  [[credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8', name: 'origin', url: 'git@git.demo.lan:puppet/control-repo.git' ]]
-              ]
-    )
+    checkout changelog: true,
+      poll: false,
+      scm: [$class: 'GitSCM',
+        branches: [[
+                    name: 'origin/${gitlabSourceBranch}']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[
+                                  $class: 'PreBuildMerge',
+                                  options: [
+                                    fastForwardMode: 'FF',
+                                    mergeRemote: 'origin',
+                                    mergeStrategy: 'default',
+                                    mergeTarget: '${gitlabTargetBranch}'
+                                  ]
+                    ]],
+        submoduleCfg: [],
+        userRemoteConfigs: [[
+                              credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8',
+                              name: 'origin',
+                              refspec: '+refs/heads/*:refs/remotes/origin/* +refs/merge-requests/*/head:refs/remotes/origin/merge-requests/*',
+                              url: 'git@git.demo.lan:puppet/control-repo.git'
+                            ]]
+      ]
+
 
     stage('Lint Control Repo'){
       withEnv(['PATH+EXTRA=/usr/local/bin']) {
