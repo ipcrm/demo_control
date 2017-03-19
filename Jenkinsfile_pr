@@ -1,9 +1,7 @@
 node {
-
   checkout(
            changelog: true,
-           poll: true,
-           scm: [$class: 'GitSCM',
+           [$class: 'GitSCM',
             branches: [
               [
                 name: "origin/${env.gitlabSourceBranch}"]],
@@ -20,7 +18,7 @@ node {
                 ],
               submoduleCfg: [],
               userRemoteConfigs:
-                [ [name: 'origin', url: 'git@git.demo.lan:puppet/control-repo.git', credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8']]
+                [[credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8', name: 'origin', url: 'git@git.demo.lan:puppet/control-repo.git' ]]
             ]
   )
 
