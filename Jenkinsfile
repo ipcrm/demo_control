@@ -1,4 +1,4 @@
-properties([gitLabConnection('git.demo.lan')])
+properties([gitLabConnection('git.demo.lan'), disableConcurrentBuilds()])
 puppet.credentials 'pe-access-token'
 
 node {
