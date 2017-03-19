@@ -1,28 +1,30 @@
 node {
-  checkout(
-           changelog: true,
-           [$class: 'GitSCM',
-            branches: [
-              [
-                name: "origin/${env.gitlabSourceBranch}"]],
-                doGenerateSubmoduleConfigurations: false,
-                extensions: [
-                  [$class: 'PreBuildMerge',
-                    options: [
-                      fastForwardMode: 'FF',
-                      mergeRemote: 'origin',
-                      mergeStrategy: 'default',
-                      mergeTarget: "${env.gitlabTargetBranch}"
-                    ]
-                  ]
-                ],
-              submoduleCfg: [],
-              userRemoteConfigs:
-                [[credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8', name: 'origin', url: 'git@git.demo.lan:puppet/control-repo.git' ]]
-            ]
-  )
+  try {
+    updateGitlabCommitStatus(name: 'build', state: 'running')
 
-  gitlabCommitStatus {
+    checkout(
+             changelog: true,
+             [$class: 'GitSCM',
+              branches: [
+                [
+                  name: "origin/${env.gitlabSourceBranch}"]],
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [
+                    [$class: 'PreBuildMerge',
+                      options: [
+                        fastForwardMode: 'FF',
+                        mergeRemote: 'origin',
+                        mergeStrategy: 'default',
+                        mergeTarget: "${env.gitlabTargetBranch}"
+                      ]
+                    ]
+                  ],
+                submoduleCfg: [],
+                userRemoteConfigs:
+                  [[credentialsId: '8ff77aa3-5379-42e9-8a98-869192b693c8', name: 'origin', url: 'git@git.demo.lan:puppet/control-repo.git' ]]
+              ]
+    )
+
     stage('Lint Control Repo'){
       withEnv(['PATH+EXTRA=/usr/local/bin']) {
         ansiColor('xterm') {
@@ -64,9 +66,14 @@ node {
         }
       }
     }
-  }
 
-  def resultIcon = currentBuild.result == 'SUCCESS' ? ':white_check_mark:' : ':anguished:'
-  addGitLabMRComment comment: "$resultIcon Jenkins Build $currentBuild.result\n\nResults available at: [Jenkins [$env.JOB_NAME#$env.BUILD_NUMBER]]($env.BUILD_URL)"
+    updateGitlabCommitStatus(name: 'build', state: 'success')
+    addGitLabMRComment comment: "Jenkins build $currentBuild.result"
+
+  } catch(error) {
+    updateGitlabCommitStatus(name: 'build', state: 'failed')
+    addGitLabMRComment comment: "Jenkins build $currentBuild.result\n$error"
+    currentBuild.result = 'FAILURE'
+  }
 }
 
