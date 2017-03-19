@@ -62,7 +62,7 @@ node {
       puppet.job 'production', query: 'facts { name = "appenv" and value = "qa"}'
     }
 
-    input 'Ready to release to Production?'
+    input 'Ready to release to Production'
     stage("Release To Production"){
       puppet.job 'production', query: 'facts { name = "appenv" and value = "production"}'
     }
