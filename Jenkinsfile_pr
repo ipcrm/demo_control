@@ -69,6 +69,7 @@ node {
       }
     }
 
+    currentBuild.result = 'SUCCESS'
     updateGitlabCommitStatus(name: 'build', state: 'success')
     addGitLabMRComment comment: "Jenkins build $currentBuild.result"
 
