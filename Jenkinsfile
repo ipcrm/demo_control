@@ -55,16 +55,16 @@ node {
   if (env.BRANCH_NAME == 'production'){
 
     stage("Release To DEV"){
-      puppet.job 'production', query: 'nodes { appenv = "dev" and environment = "production" }'
+      puppet.job 'production', query: 'facts { name = "appenv" and value = "dev"}'
     }
 
     stage("Release To QA"){
-      puppet.job 'production', query: 'nodes { appenv = "qa" and environment = "production" }'
+      puppet.job 'production', query: 'facts { name = "appenv" and value = "qa"}'
     }
 
     input 'Ready to release to production?'
     stage("Release To Production"){
-      puppet.job 'production', query: 'nodes { appenv = "production" and environment = "production" }'
+      puppet.job 'production', query: 'facts { name = "appenv" and value = "production"}'
     }
 
   }
