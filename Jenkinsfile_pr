@@ -22,48 +22,51 @@ node {
             ]
   )
 
-  stage('Lint Control Repo'){
-    withEnv(['PATH+EXTRA=/usr/local/bin']) {
-      ansiColor('xterm') {
-        sh(script: '''
-          source ~/.bash_profile
-          rbenv global 2.3.1
-          eval "$(rbenv init -)"
-          bundle install
-          bundle exec rake lint
-        ''')
+  gitlabCommitStatus {
+    stage('Lint Control Repo'){
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
+        ansiColor('xterm') {
+          sh(script: '''
+            source ~/.bash_profile
+            rbenv global 2.3.1
+            eval "$(rbenv init -)"
+            bundle install
+            bundle exec rake lint
+          ''')
+        }
+      }
+    }
+
+    stage('Syntax Check Control Repo'){
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
+        ansiColor('xterm') {
+          sh(script: '''
+            source ~/.bash_profile
+            rbenv global 2.3.1
+            eval "$(rbenv init -)"
+            bundle install
+            bundle exec rake syntax --verbose
+          ''')
+        }
+      }
+    }
+
+    stage('Validate Puppetfile in Control Repo'){
+      withEnv(['PATH+EXTRA=/usr/local/bin']) {
+        ansiColor('xterm') {
+          sh(script: '''
+            source ~/.bash_profile
+            rbenv global 2.3.1
+            eval "$(rbenv init -)"
+            bundle install
+            bundle exec rake r10k:syntax
+          ''')
+        }
       }
     }
   }
 
-  stage('Syntax Check Control Repo'){
-    withEnv(['PATH+EXTRA=/usr/local/bin']) {
-      ansiColor('xterm') {
-        sh(script: '''
-          source ~/.bash_profile
-          rbenv global 2.3.1
-          eval "$(rbenv init -)"
-          bundle install
-          bundle exec rake syntax --verbose
-        ''')
-      }
-    }
-  }
-
-  stage('Validate Puppetfile in Control Repo'){
-    withEnv(['PATH+EXTRA=/usr/local/bin']) {
-      ansiColor('xterm') {
-        sh(script: '''
-          source ~/.bash_profile
-          rbenv global 2.3.1
-          eval "$(rbenv init -)"
-          bundle install
-          bundle exec rake r10k:syntax
-        ''')
-      }
-    }
-  }
+  def resultIcon = currentBuild.result == 'SUCCESS' ? ':white_check_mark:' : ':anguished:'
+  addGitLabMRComment comment: "$resultIcon Jenkins Build $currentBuild.result\n\nResults available at: [Jenkins [$env.JOB_NAME#$env.BUILD_NUMBER]]($env.BUILD_URL)"
 }
 
-def resultIcon = currentBuild.result == 'SUCCESS' ? ':white_check_mark:' : ':anguished:'
-addGitLabMRComment comment: "$resultIcon Jenkins Build $currentBuild.result\n\nResults available at: [Jenkins [$env.JOB_NAME#$env.BUILD_NUMBER]]($env.BUILD_URL)"
