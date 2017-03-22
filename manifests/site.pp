@@ -16,6 +16,17 @@ site {
     },
   }
 
+  cloudshop { 'split':
+    dbinstance => 'MYINSTANCE',
+    dbuser     => 'CloudShop',
+    dbpassword => 'Azure$123',
+    dbname     => 'AdventureWorks2012',
+    nodes      => {
+      Node['cloudshop-iis.demo.lan'] => Cloudshop::App['split'],
+      Node['cloudshop-db.demo.lan']  => Cloudshop::Db['split'],
+    },
+  }
+
   $environment = get_compiler_environment()
 
   # Dynamic application declarations
