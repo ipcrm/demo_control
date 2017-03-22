@@ -20,7 +20,7 @@ site {
 
   # Dynamic application declarations
   # from JSON
-  $envs = loadyaml("/etc/puppetlabs/code/environments/${environment}/applications.yaml")
+  $envs = loadyaml("/etc/puppetlabs/${environment}-apps.yaml")
   $applications = pick_default($envs[$environment], {})
 
   $applications.each |String $type, $instances| {
@@ -35,18 +35,6 @@ site {
       }
     }
   }
-
-  cloudshop { 'split':
-    dbinstance => 'MYINSTANCE',
-    dbuser     => 'CloudShop',
-    dbpassword => 'Azure$123',
-    dbname     => 'AdventureWorks2012',
-    nodes      => {
-      Node['cloudshop-iis.demo.lan'] => Cloudshop::App['split'],
-      Node['cloudshop-db.demo.lan']  => Cloudshop::Db['split'],
-    },
-  }
-
 }
 
 
