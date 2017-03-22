@@ -1,5 +1,5 @@
 # Disable filebucket by default for all File resources:
-File { backup => false }
+File { backup => false 
 site {
 
   flask_app {'prod':
