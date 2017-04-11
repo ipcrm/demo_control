@@ -145,9 +145,7 @@ class profile::database::oracle {
       value => '10240';
   }
 
-  package { $install:
-    ensure  => present,
-  }
+  ensure_packages($install, {'ensure' => 'present'})
 
   oradb::installdb{ "${install_version}-${install_file_prefix}":
     version                   => $install_version,
@@ -172,7 +170,7 @@ class profile::database::oracle {
     user         => $ora_user,
     group        => $ora_gid,
     download_dir => $download_dir,
-    db_port      => '1521',
+    db_port      => 1521,
   }
 
   file {"${oracle_home}/dbs/init${ora_sid}.ora":
@@ -193,7 +191,7 @@ class profile::database::oracle {
     action                    => 'create',
     db_name                   => $ora_db_name,
     db_domain                 => $ora_domain,
-    db_port                   => '1521',
+    db_port                   => 1521,
     sys_password              => $ora_sys_passwd,
     system_password           => $ora_sys_passwd,
     data_file_destination     => $ora_data_loc,
@@ -205,8 +203,8 @@ class profile::database::oracle {
                                   'job_queue_processes' => '4',
                                 },
     sample_schema             => 'TRUE',
-    memory_percentage         => '40',
-    memory_total              => '800',
+    memory_percentage         => 40,
+    memory_total              => 800,
     database_type             => 'MULTIPURPOSE',
     em_configuration          => 'NONE',
   }
