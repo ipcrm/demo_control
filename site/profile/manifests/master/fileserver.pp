@@ -9,4 +9,7 @@ class profile::master::fileserver {
     docroot_group => 'root',
   }
 
+
+  include profile::master::files::oradb
+
 }
