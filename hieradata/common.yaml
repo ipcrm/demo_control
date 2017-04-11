@@ -14,6 +14,10 @@ profile::base::dns::nameserver:
   - '10.240.0.10'
   - '10.240.1.10'
 
+
+# Puppet Agent Package Version
+profile::base::package_version: '1.9.3'
+
 # User/Group
 users:
   testuser1:

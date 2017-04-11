@@ -1,5 +1,6 @@
 class profile::base(
   Boolean $orch_agent = false,
+  String  $package_version = '1.8.2',
 ){
 
   host{$::fqdn:
@@ -26,7 +27,7 @@ class profile::base(
 
   if $::fqdn != $::puppet_master_server {
     class {'::puppet_agent':
-        package_version => '1.8.2',
+        package_version => $package_version,
     }
   }
 
