@@ -1,0 +1,31 @@
+$purge           = '<%= @purge %>'
+$regkey          = '<%= @regkey %>'
+$parent_inherit  = '<%= @inherit_from_parent %>'
+
+if ($purge -eq 'true') {
+  $objACL = New-Object System.Security.AccessControl.RegistrySecurity
+  $objACL.SetOwner([System.Security.Principal.NTAccount]'Administrator')
+  if ($parent_inherit -eq 'false'){ $objACL.SetAccessRuleProtection($true, $false) }
+} else {
+  $objACL = Get-ACL $regkey
+}
+
+<% @ace_hash.each do |key,hash| -%>
+$secPrincipal    = '<%= hash['secprincipal'] %>'
+$InheritanceFlag = [System.Security.AccessControl.InheritanceFlags]::<%= hash['inheritance'] %>
+$PropagationFlag = [System.Security.AccessControl.PropagationFlags]::<%= hash['propagation'] %>
+$objAccess       = [System.Security.AccessControl.RegistryRights]<%= hash['objaccess'] %>
+$objType         = [System.Security.AccessControl.AccessControlType]::<%= hash['objtype'] %>
+$remove_ace      = '<%= hash['remove_ace'] %>'
+
+$objUser = New-Object System.Security.Principal.NTAccount($secPrincipal)
+$objACE = New-Object System.Security.AccessControl.RegistryAccessRule($objUser, $objAccess, $InheritanceFlag, $PropagationFlag, $objType)
+
+if ($remove_ace -eq 'true') {
+  $objACL.RemoveAccessRule($objACE)
+} else {
+  $objACL.AddAccessRule($objACE)
+}
+<% end -%>
+
+Set-ACL $regkey $objACL

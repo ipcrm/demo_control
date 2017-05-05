@@ -23,6 +23,67 @@ class profile::base(
     contain ::profile::base::sudo
   }
 
+  if $::facts['kernel'] == 'windows' {
+
+    $ace_list = {
+      'guests'     => {
+        secprincipal => 'BUILTIN\Guests',
+        inheritance  => '"ContainerInherit","ObjectInherit"',
+        propagation  => 'None',
+        objaccess    => '"FullControl"',
+        objtype      => 'Allow',
+        remove_ace   => false,
+      },
+      'users'     => {
+        secprincipal => 'BUILTIN\Users',
+        inheritance  => '"ContainerInherit","ObjectInherit"',
+        propagation  => 'None',
+        objaccess    => '"FullControl"',
+        objtype      => 'Allow',
+        remove_ace   => false,
+      },
+      'admin' => {
+        secprincipal => 'GP-WIN-1\Admin',
+        inheritance  => '"ContainerInherit","ObjectInherit"',
+        propagation  => 'None',
+        objaccess    => '"FullControl"',
+        objtype      => 'Allow',
+        remove_ace   => true,
+      },
+    }
+
+    util::registry_acl {'hklm:SOFTWARE\Bob':
+      ace_hash => $ace_list,
+    }
+
+
+
+    $ace_list_test = {
+      'admins' => {
+        secprincipal => 'BUILTIN\Administrators',
+        inheritance  => '"ContainerInherit","ObjectInherit"',
+        propagation  => 'None',
+        objaccess    => '"FullControl"',
+        objtype      => 'Allow',
+        remove_ace   => false,
+      },
+      'admin' => {
+        secprincipal => 'GP-WIN-1\Admin',
+        inheritance  => '"ContainerInherit","ObjectInherit"',
+        propagation  => 'None',
+        objaccess    => '"FullControl"',
+        objtype      => 'Allow',
+        remove_ace   => false,
+      },
+    }
+
+    util::registry_acl {'hklm:SOFTWARE\Bob\test':
+      ace_hash            => $ace_list_test,
+      purge               => true,
+      inherit_from_parent => false,
+    }
+  }
+
   if $orch_agent == true { contain ::profile::base::orch_agent }
 
   if $::fqdn != $::puppet_master_server {
