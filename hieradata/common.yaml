@@ -16,7 +16,7 @@ profile::base::dns::nameserver:
 
 
 # Puppet Agent Package Version
-profile::base::package_version: '1.9.3'
+profile::base::package_version: '1.10.1'
 
 # User/Group
 users:
@@ -46,6 +46,7 @@ puppet_enterprise::profile::console::classifier_synchronization_period: 0
 puppet_enterprise::profile::master::app_management: true
 puppet_enterprise::profile::orchestrator::use_application_services: true
 puppet_enterprise::master::puppetserver::jruby_max_active_instances: 4
+puppet_enterprise::profile::console::proxy::http_redirect::enable_http_redirect: false
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
