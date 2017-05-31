@@ -47,6 +47,11 @@ puppet_enterprise::profile::master::app_management: true
 puppet_enterprise::profile::orchestrator::use_application_services: true
 puppet_enterprise::master::puppetserver::jruby_max_active_instances: 4
 puppet_enterprise::profile::console::proxy::http_redirect::enable_http_redirect: false
+puppet_enterprise::master::puppetserver::cipher_suites:
+  - 'TLS_RSA_WITH_AES_256_CBC_SHA256'
+  - 'TLS_RSA_WITH_AES_256_CBC_SHA'
+  - 'TLS_RSA_WITH_AES_128_CBC_SHA256'
+  - 'TLS_RSA_WITH_AES_128_CBC_SHA'
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
