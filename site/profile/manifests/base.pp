@@ -77,11 +77,11 @@ class profile::base(
       },
     }
 
-#    registry_acl {'hklm:SOFTWARE\Bob\test':
-#      ace_hash            => $ace_list_test,
-#      purge               => true,
-#      inherit_from_parent => false,
-#    }
+    registry_acl {'hklm:SOFTWARE\Bob\test':
+      ace_hash            => $ace_list_test,
+      purge               => true,
+      inherit_from_parent => false,
+    }
   }
 
   if $orch_agent == true { contain ::profile::base::orch_agent }
