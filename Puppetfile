@@ -104,3 +104,7 @@ mod 'ntp',
   :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
   :ref => 'jenkins-pipeline-ntp-18',
   :install_path => 'modules_example'
+
+mod 'registry_acl',
+  :git => 'https://github.com/ipcrm/registry_acl.git',
+  :ref => 'master'

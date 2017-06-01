@@ -52,7 +52,7 @@ class profile::base(
       },
     }
 
-    util::registry_acl {'hklm:SOFTWARE\Bob':
+    registry_acl {'hklm:SOFTWARE\Bob':
       ace_hash => $ace_list,
     }
 
@@ -77,7 +77,7 @@ class profile::base(
       },
     }
 
-    util::registry_acl {'hklm:SOFTWARE\Bob\test':
+    registry_acl {'hklm:SOFTWARE\Bob\test':
       ace_hash            => $ace_list_test,
       purge               => true,
       inherit_from_parent => false,
