@@ -60,7 +60,7 @@ puppet_enterprise::master::code_manager::sources:
     prefix: false
   democontrol2:
     remote: "git@git.demo.lan:puppet/control_repo_2.git"
-    prefix: true
+    prefix: "democontrol2"
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
