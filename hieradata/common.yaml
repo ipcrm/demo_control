@@ -55,12 +55,12 @@ puppet_enterprise::master::puppetserver::cipher_suites:
 
 
 puppet_enterprise::master::code_manager::sources:
-  demo_control:
-    remote: "git@git.demo.lan:puppet/control-repo.git"
-    prefix: false
-  demo_control_2:
-    remote: "git@git.demo.lan:puppet/control_repo_2.git"
-    prefix: true
+  democontrol:
+    remote: "git@git.demo.lan:puppet/control-repo.git"
+    prefix: false
+  democontrol2:
+    remote: "git@git.demo.lan:puppet/control_repo_2.git"
+    prefix: true
 
 #PuppetDB TTL
 puppet_enterprise::profile::puppetdb::node_purge_ttl: "1s"
