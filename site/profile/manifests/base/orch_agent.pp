@@ -1,5 +1,5 @@
 class profile::base::orch_agent (
-  $ensure = 'present',
+  Boolean $ensure = false,
 )
 {
   $puppet_conf = $::kernel ? {
@@ -7,8 +7,13 @@ class profile::base::orch_agent (
     default   => '/etc/puppetlabs/puppet/puppet.conf',
   }
 
+  $ensure_setting = $ensure ? {
+    true  => 'present',
+    false => 'absent',
+  }
+
   ini_setting { 'puppet agent use_cached_catalog':
-    ensure  => $ensure,
+    ensure  => $ensure_setting,
     path    => $puppet_conf,
     section => 'agent',
     setting => 'use_cached_catalog',

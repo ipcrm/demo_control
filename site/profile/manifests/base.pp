@@ -1,5 +1,5 @@
 class profile::base(
-  Boolean $orch_agent = 'absent',
+  Boolean $orch_agent = false
   String  $package_version = '1.8.2',
 ){
 
