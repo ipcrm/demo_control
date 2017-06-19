@@ -1,5 +1,5 @@
 class profile::base(
-  Boolean $orch_agent = false,
+  Boolean $orch_agent = 'absent',
   String  $package_version = '1.8.2',
 ){
 
@@ -23,7 +23,9 @@ class profile::base(
     contain ::profile::base::sudo
   }
 
-  if $orch_agent == true { contain ::profile::base::orch_agent }
+  class{'::profile::base::orch_agent':
+    ensure => $orch_agent,
+  }
 
   if $::fqdn != $::puppet_master_server {
     class {'::puppet_agent':
