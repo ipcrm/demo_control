@@ -1,6 +1,6 @@
 ---
-# Turn on AO for all nodes(by default)
-profile::base::orch_agent: false
+# Turn off AO for all nodes(by default)
+profile::base::orch_agent: absent
 puppet_enterprise::master::code_manager::certname: test
 
 #MOTD Message
