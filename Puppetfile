@@ -86,7 +86,7 @@ mod 'cloudshop',
 
 mod 'elk_report',
   :git => 'https://github.com/ipcrm/ipcrm-elk_report.git',
-  :ref => 'master'
+  :ref => 'test'
 
 mod 'profile_websphere',
   :git => 'https://github.com/ipcrm/pov-usecase-websphere.git'
