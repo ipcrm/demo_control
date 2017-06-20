@@ -64,7 +64,7 @@ mod 'jonono-auditpol', '0.1.2'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
-  :ref => 'eae56921951fc5d5b97ffc720d43c781258fbfd0'
+  :ref => 'master'
 
 mod 'tse-winntp',
   :git => 'https://github.com/puppetlabs/tse-module-winntp.git',
