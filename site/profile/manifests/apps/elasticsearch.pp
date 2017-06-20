@@ -6,14 +6,13 @@ class profile::apps::elasticsearch {
     config       => {
       'network.host' => '0.0.0.0',
     },
-  }
-
-  elasticsearch::instance { 'es-01':
-    jvm_options => [
+    jvm_options  => [
       '-Xms3g',
       '-Xmx3g',
     ],
   }
+
+  elasticsearch::instance { 'es-01': }
 
   class{'::kibana4':
     plugins => {
