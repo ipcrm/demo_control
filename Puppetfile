@@ -59,6 +59,7 @@ mod 'jdowning-rbenv', '2.2.0'
 mod 'biemond-oradb', '3.0.7'
 mod 'fiddyspence-sysctl', '1.1.0'
 mod 'puppetlabs-limits', '0.1.0'
+mod 'ayohrling-local_security_policy', '0.6.1'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
