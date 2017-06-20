@@ -8,7 +8,12 @@ class profile::apps::elasticsearch {
     },
   }
 
-  elasticsearch::instance { 'es-01': }
+  elasticsearch::instance { 'es-01':
+    jvm_options => [
+      '-Xms3g',
+      '-Xmx3g',
+    ],
+  }
 
   class{'::kibana4':
     plugins => {
