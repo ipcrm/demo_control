@@ -1,6 +1,7 @@
 class profile::apps::elasticsearch {
   $config_hash = {
     'ES_HEAP_SIZE' => '3g',
+    'ES_JAVA_OPTS' => '-Xms3g -Xmx3g',
   }
 
 
@@ -11,10 +12,6 @@ class profile::apps::elasticsearch {
     config        => {
       'network.host' => '0.0.0.0',
     },
-    jvm_options   => [
-      '-Xms3g',
-      '-Xmx3g',
-    ],
     init_defaults => $config_hash,
   }
 
