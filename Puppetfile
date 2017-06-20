@@ -41,7 +41,6 @@ mod 'reidmv-unzip',    '0.1.2'
 mod 'elasticsearch/elasticsearch',    '0.13.2'
 mod 'richardc/datacat',    '0.6.2'
 mod 'lesaux/kibana4',    '1.0.17'
-mod 'puppetlabs-java',    '1.6.0'
 mod 'puppetlabs-ciscopuppet',    '1.4.1'
 mod 'rtyler-jenkins',    '1.7.0'
 mod 'tse-to_resource',    '0.1.2'
@@ -61,6 +60,10 @@ mod 'fiddyspence-sysctl', '1.1.0'
 mod 'puppetlabs-limits', '0.1.0'
 mod 'ayohrling-local_security_policy', '0.6.1'
 mod 'jonono-auditpol', '0.1.2'
+
+mod 'java',
+  :git => 'https://github.com/puppetlabs/puppetlabs-java.git',
+  :ref => '8763d0b3881c2128bb8b4e58e36e15eed1a0b68a'
 
 mod 'demo_cis',
   :git => 'https://github.com/ipcrm/ipcrm-demo_cis.git',
