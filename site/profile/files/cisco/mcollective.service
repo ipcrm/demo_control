@@ -1,0 +1,15 @@
+# Managed by Puppet
+[Unit]
+Description=The Marionette Collective
+After=network.target
+
+[Service]
+Type=forking
+StandardOutput=syslog
+StandardError=syslog
+ExecStart=/bin/nsenter --net=/var/run/netns/management -- /opt/puppetlabs/puppet/bin/mcollectived --config=/etc/puppetlabs/mcollective/server.cfg --pidfile=/var/run/puppetlabs/mcollective.pid --daemonize
+ExecReload=/bin/kill -USR1 $MAINPID
+PIDFile=/var/run/puppetlabs/mcollective.pid
+
+[Install]
+WantedBy=multi-user.target
