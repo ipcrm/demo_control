@@ -50,7 +50,9 @@ class profile::master::node_groups {
           '~', ['fact', 'role'], '\w+']
       ], [
         'not', ['=', ['fact', 'clientcert'], 'master.demo.lan']
-        ]
+      ], [
+        'not', ['=', ['fact', 'operatingsystem'], 'nexus']
+      ]
     ],
     classes => { 'role::generalserver' => {}, },
   }
