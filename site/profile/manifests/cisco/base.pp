@@ -1,6 +1,6 @@
 class profile::cisco::base {
   # Setup
-  include ::cisco::install
+  include ::ciscopuppet::install
 
   # Setup Crontab PAM Access
   file {'/etc/pam.d/crond':
