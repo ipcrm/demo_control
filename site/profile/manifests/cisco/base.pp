@@ -1,4 +1,23 @@
 class profile::cisco::base {
+  # Setup
+  include ::cisco::install
+
+  # Setup Crontab PAM Access
+  file {'/etc/pam.d/crond':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    content => '
+    auth       sufficient pam_rootok.so
+    auth       required   pam_env.so
+    account    required   pam_access.so
+    session    required   pam_limits.so
+    session    required   pam_loginuid.so
+    ',
+    before  => Class['puppet_enterprise::profile::mcollective::agent'],
+  }
+
   # NTP
   ntp_config{'default':
     source_interface => 'mgmt0',
@@ -19,15 +38,6 @@ class profile::cisco::base {
     shutdown  => false,
     state     => 'active',
     vlan_name => 'vlan3',
-  }
-
-  # VTP
-  cisco_vtp {'default':
-    ensure   => present,
-    name     => 'default',
-    domain   => 'examplevtp',
-    password => 'example',
-    version  => 'default',
   }
 
 }
