@@ -18,21 +18,6 @@ class profile::cisco::base {
     before  => Class['puppet_enterprise::profile::mcollective::agent'],
   }
 
-  # Update systemd init processes
-  file {'/etc/systemd/system/multi-user.target.wants/mcollective.service':
-    ensure  => present,
-    source  => 'puppet:///modules/profile/cisco/mcollective.service',
-    notify  => Service['mcollective'],
-    require => Class['puppet_enterprise::profile::mcollective::agent'],
-  }
-
-  file {'/etc/systemd/system/multi-user.target.wants/pxp-agent.service':
-    ensure  => present,
-    source  => 'puppet:///modules/profile/cisco/pxp-agent.service',
-    notify  => Service['pxp-agent'],
-    require => Class['puppet_enterprise::profile::mcollective::agent'],
-  }
-
   # NTP
   ntp_config{'default':
     source_interface => 'mgmt0',
