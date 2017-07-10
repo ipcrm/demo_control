@@ -2,6 +2,15 @@ class profile::cisco::base {
   # Setup
   include ::ciscopuppet::install
 
+  # NTP
+  ntp_config{'default':
+    source_interface => 'mgmt0',
+  }
+  ntp_server{'24.56.178.140':
+    ensure => present,
+  }
+
+
   # Setup Crontab PAM Access
   file {'/etc/pam.d/crond':
     ensure  => present,
@@ -31,28 +40,6 @@ class profile::cisco::base {
     source  => 'puppet:///modules/profile/cisco/pxp-agent.service',
     notify  => Service['pxp-agent'],
     require => Class['puppet_enterprise::profile::mcollective::agent'],
-  }
-
-  # NTP
-  ntp_config{'default':
-    source_interface => 'mgmt0',
-  }
-  ntp_server{'24.56.178.140':
-    ensure => present,
-  }
-
-  # Configure some VLANs
-  cisco_vlan { '2':
-    ensure    => 'present',
-    shutdown  => false,
-    state     => 'active',
-    vlan_name => 'vlan2',
-  }
-  cisco_vlan { '3':
-    ensure    => 'present',
-    shutdown  => false,
-    state     => 'active',
-    vlan_name => 'vlan3',
   }
 
 }
