@@ -5,9 +5,11 @@ class profile::cisco::base {
   # NTP
   ntp_config{'default':
     source_interface => 'mgmt0',
+    notify           => Exec['cisco save config'],
   }
   ntp_server{'24.56.178.140':
     ensure => present,
+    notify => Exec['cisco save config'],
   }
 
   # Setup Crontab PAM Access
@@ -45,7 +47,5 @@ class profile::cisco::base {
     command     => "/bin/dohost 'copy running-config startup-config'",
     refreshonly => true,
   }
-
-  Class['profile::cisco::base'] ~> Exec['cisco save config']
 
 }
