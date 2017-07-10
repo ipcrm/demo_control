@@ -42,7 +42,7 @@ class profile::cisco::base {
   }
 
   exec {'cisco save config':
-    command     => "dohost 'copy running-config startup-config'",
+    command     => "/bin/dohost 'copy running-config startup-config'",
     refreshonly => true,
   }
 
