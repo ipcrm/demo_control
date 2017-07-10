@@ -1,4 +1,7 @@
 class profile::cisco::portchannel {
+
+  Class['profile::cisco::portchannel'] ~> Exec['cisco save config']
+
   # Source https://github.com/cisco/cisco-network-puppet-module/blob/master/examples/cisco/demo_portchannel.pp
   # lint:ignore:quoted_booleans
   cisco_portchannel_global { 'default':

@@ -1,4 +1,7 @@
 class profile::cisco::bgp {
+
+  Class['profile::cisco::bgp'] ~> Exec['cisco save config']
+
   cisco_command_config { 'features':
     command => "
       feature bgp

@@ -41,22 +41,11 @@ class profile::cisco::base {
     require => Class['puppet_enterprise::profile::mcollective::agent'],
   }
 
-  cisco_command_config {
-    command => "
-    copy running-config startup-config
-    ",
-    subscribe => [
-      Cisco_bgp <||>,
-      Cisco_bgp_neighbor <||>,
-      Cisco_command_config <||>,
-      Cisco_interface <||>,
-      Cisco_interface_channel_group <||>,
-      Cisco_interface_portchannel <||>,
-      Cisco_portchannel_global <||>,
-      Cisco_vlan <||>,
-      Cisco_vxlan_vtep <||>,
-      Cisco_vxlan_vtep_vni <||>,
-    ]
+  exec {'cisco save config':
+    command     => "dohost 'copy running-config startup-config'",
+    refreshonly => true,
   }
+
+  Class['profile::cisco::base'] ~> Exec['cisco save config']
 
 }

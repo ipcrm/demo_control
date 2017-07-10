@@ -3,6 +3,8 @@
 #
 class profile::cisco::vlans {
 
+  Class['profile::cisco::vlans'] ~> Exec['cisco save config']
+
   # Configure some VLANs
   cisco_vlan { '2':
     ensure    => 'present',

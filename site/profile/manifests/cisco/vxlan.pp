@@ -1,4 +1,7 @@
 class profile::cisco::vxlan {
+
+  Class['profile::cisco::vxlan'] ~> Exec['cisco save config']
+
   cisco_vxlan_vtep { 'nve1':
     ensure            => present,
     description       => 'Configured by puppet',

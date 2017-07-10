@@ -1,4 +1,7 @@
 class profile::cisco::interfaces {
+
+  Class['profile::cisco::interfaces'] ~> Exec['cisco save config']
+
   # lint:ignore:quoted_booleans
   [3,4,5,6].each |$i| {
     cisco_interface { "ethernet1/${i}":
