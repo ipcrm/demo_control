@@ -18,4 +18,17 @@ class profile::cisco::vlans {
     vlan_name => 'vlan3',
   }
 
+  cisco_vlan { '200':
+    ensure    => 'present',
+    shutdown  => false,
+    state     => 'active',
+    vlan_name => 'vlan200',
+  }
+  cisco_vlan { '300':
+    ensure    => 'present',
+    shutdown  => false,
+    state     => 'active',
+    vlan_name => 'vlan300',
+  }
+
 }

@@ -10,7 +10,6 @@ class profile::cisco::base {
     ensure => present,
   }
 
-
   # Setup Crontab PAM Access
   file {'/etc/pam.d/crond':
     ensure  => present,
