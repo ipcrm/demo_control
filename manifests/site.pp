@@ -53,7 +53,7 @@ site {
 
 
 if pick($::noop_disable,false) == false {
-  if $::role != 'master' 
+  if $::role != 'master' {
     notify{'Noop Enabled': }
     noop()
   }
