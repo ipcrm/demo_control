@@ -12,6 +12,14 @@ class profile::webserver::jboss (
     version        => $version,
     require        => Class['java'],
     java_home      => '/usr/lib/jvm/java/jre/',
+    properties     => {
+      'jboss.bind.address'            => '0.0.0.0',
+      'jboss.bind.address.management' => '0.0.0.0'
+    },
+    mgmt_user      => {
+      username => 'admin',
+      password => 'admin',
+    },
   }
 
   firewall { '100 allow connections to wildfly':
