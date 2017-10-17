@@ -110,3 +110,5 @@ mod 'ntp',
   :git => 'https://github.com/ipcrm/ipcrm-ntp.git',
   :ref => 'jenkins-pipeline-ntp-18',
   :install_path => 'modules_example'
+
+mod 'puppetlabs-satellite_pe_tools', '2.0.0'
